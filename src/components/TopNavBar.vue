@@ -25,5 +25,20 @@ export default {
 </script>
 
 <style>
+.logo-toolbar {
+  display: flex;
+  align-items: center;
+}
 
+.logo-img {
+  height: 50px;
+  width: 50px;
+}
+
+.logo-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 10px;
+  color: white;
+}
 </style>
