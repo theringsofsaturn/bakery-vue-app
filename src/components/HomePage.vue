@@ -23,8 +23,6 @@
                     :src="offer.image"
                     alt="offer.name"
                     height="400"
-                    width="600"
-                    contain
                     class="align-center"
                   ></v-img>
                 </div>
@@ -58,7 +56,6 @@
                     alt="item.name"
                     height="200"
                     width="300"
-                    contain
                     class="align-center pa-2"
                   ></v-img>
                 </div>

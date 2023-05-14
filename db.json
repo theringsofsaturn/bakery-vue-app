@@ -10,9 +10,30 @@
     {
       "id": 2,
       "name": "Vanilla Cupcake",
-      "image": "https://i.pinimg.com/originals/20/07/a2/2007a24d65cfcf285e356e6cfb25ace5.jpg",
+      "image": "https://th.bing.com/th/id/OIP.SlPoHKIBOPIl81i6jDIW1QHaHa?pid=ImgDet&rs=1",
       "price": 5,
       "discountPrice": 4
+    },
+    {
+      "id": 3,
+      "name": "Strawberry Delight",
+      "image": "https://th.bing.com/th/id/R.00962543d72746e9489617ec77124d5a?rik=jDT%2bXfld70%2b8vQ&riu=http%3a%2f%2fbakedbroiledandbasted.com%2fwp-content%2fuploads%2f2018%2f05%2fStrawberry-Delight-Ice-Box-Cake-7.jpg&ehk=KwogsJfOBJCWBToENAL0MGhMKvk6QXpx0yqoroKCiO4%3d&risl=&pid=ImgRaw&r=0",
+      "price": 20,
+      "discountPrice": 18
+    },
+    {
+      "id": 4,
+      "name": "Angel Cake",
+      "image": "https://th.bing.com/th/id/R.84f9f40e59021fe262b725c8a6007a6d?rik=TXgNaGBPKgRuug&pid=ImgRaw&r=0",
+      "price": 5,
+      "discountPrice": 4
+    },
+    {
+      "id": 5,
+      "name": "Babka Cake",
+      "image": "https://th.bing.com/th/id/OIP.oWFK9IXlY-EbVYjQMTzt3gHaHa?pid=ImgDet&rs=1",
+      "price": 20,
+      "discountPrice": 18
     }
   ],
   "popularItems": [
@@ -27,6 +48,66 @@
       "name": "Macarons",
       "image": "https://th.bing.com/th/id/R.cfa6a9dd85bb27bdb7d6ee6b7dcbf008?rik=EOAofzaLYMQNPg&pid=ImgRaw&r=0",
       "price": 10
+    },
+    {
+      "id": 3,
+      "name": "Chocolate Cake",
+      "image": "https://cdn.shopify.com/s/files/1/2725/9456/products/flavourtown-bakery-london-cakes_chocolate-party02_2048x2048.jpg?v=1535147440",
+      "price": 15
+    },
+    {
+      "id": 4,
+      "name": "Vanilla Cupcake",
+      "image": "https://i.pinimg.com/originals/20/07/a2/2007a24d65cfcf285e356e6cfb25ace5.jpg",
+      "price": 5
+    },
+    {
+      "id": 5,
+      "name": "Strawberry Delight",
+      "image": "https://th.bing.com/th/id/R.00962543d72746e9489617ec77124d5a?rik=jDT%2bXfld70%2b8vQ&riu=http%3a%2f%2fbakedbroiledandbasted.com%2fwp-content%2fuploads%2f2018%2f05%2fStrawberry-Delight-Ice-Box-Cake-7.jpg&ehk=KwogsJfOBJCWBToENAL0MGhMKvk6QXpx0yqoroKCiO4%3d&risl=&pid=ImgRaw&r=0",
+      "price": 20
+    },
+    {
+      "id": 6,
+      "name": "Angel Cake",
+      "image": "https://th.bing.com/th/id/R.84f9f40e59021fe262b725c8a6007a6d?rik=TXgNaGBPKgRuug&pid=ImgRaw&r=0",
+      "price": 5
+    },
+    {
+      "id": 7,
+      "name": "Babka Cake",
+      "image": "https://th.bing.com/th/id/OIP.oWFK9IXlY-EbVYjQMTzt3gHaHa?pid=ImgDet&rs=1",
+      "price": 20
+    },
+    {
+      "id": 8,
+      "name": "Apple Cake",
+      "image": "https://d1dd4ethwnlwo2.cloudfront.net/wp-content/uploads/2017/11/Cinnamon-Apple-Cake-3.jpg",
+      "price": 20
+    },
+    {
+      "id": 9,
+      "name": "Battenberg Cake",
+      "image": "https://i0.wp.com/everydaycooks.co.uk/wp-content/uploads/2020/10/easy-battenberg-cake-with-slice.jpg?fit=1200%2C1200&ssl=1",
+      "price": 10
+    },
+    {
+      "id": 10,
+      "name": "Banana Cake",
+      "image": "https://i0.wp.com/www.melissassouthernstylekitchen.com/wp-content/uploads/2019/08/best-banana-cake003.jpg?fit=1416%2C2222&ssl=1",
+      "price": 15
+    },
+    {
+      "id": 11,
+      "name": "Cheesecake with Raspberry",
+      "image": "https://th.bing.com/th/id/R.9344b155b93e2c0b59ea36437f8d68c5?rik=yiR2yO7qo8Tz%2bg&pid=ImgRaw&r=0",
+      "price": 5
+    },
+    {
+      "id": 12,
+      "name": "Chestnut Cake",
+      "image": "https://th.bing.com/th/id/R.ff6702dd56c27f812c8ce5a5ceaa782b?rik=9mx5jWc717nDaw&pid=ImgRaw&r=0",
+      "price": 20
     }
   ]
 }
