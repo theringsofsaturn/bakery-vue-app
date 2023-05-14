@@ -1,0 +1,32 @@
+{
+  "specialOffers": [
+    {
+      "id": 1,
+      "name": "Chocolate Cake",
+      "image": "https://cdn.shopify.com/s/files/1/2725/9456/products/flavourtown-bakery-london-cakes_chocolate-party02_2048x2048.jpg?v=1535147440",
+      "price": 15,
+      "discountPrice": 12
+    },
+    {
+      "id": 2,
+      "name": "Vanilla Cupcake",
+      "image": "https://i.pinimg.com/originals/20/07/a2/2007a24d65cfcf285e356e6cfb25ace5.jpg",
+      "price": 5,
+      "discountPrice": 4
+    }
+  ],
+  "popularItems": [
+    {
+      "id": 1,
+      "name": "Red Velvet Cake",
+      "image": "https://th.bing.com/th/id/OIP.PYyT8TEmDPMTjyuIWwdD-wHaFK?pid=ImgDet&rs=1",
+      "price": 20
+    },
+    {
+      "id": 2,
+      "name": "Macarons",
+      "image": "https://th.bing.com/th/id/R.cfa6a9dd85bb27bdb7d6ee6b7dcbf008?rik=EOAofzaLYMQNPg&pid=ImgRaw&r=0",
+      "price": 10
+    }
+  ]
+}
