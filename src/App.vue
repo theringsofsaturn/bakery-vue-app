@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <TopNavBar></TopNavBar>
+    <HomePage></HomePage>
     <AppFooter></AppFooter>
     <router-view />
   </v-app>
@@ -9,11 +10,13 @@
 <script>
 import TopNavBar from './components/TopNavBar.vue';
 import AppFooter from './components/AppFooter.vue';
+import HomePage from './components/HomePage.vue';
 
 export default {
   components: {
     TopNavBar,
     AppFooter,
+    HomePage,
   },
 };
 </script>
