@@ -9,33 +9,45 @@
         </v-col>
       </v-row>
 
-      <v-row>
-        <v-col>
-          <h2>Special Offers</h2>
-          <v-carousel>
-            <v-carousel-item
-              v-for="(offer, index) in specialOffers"
-              :key="index"
-            >
-              <v-card>
-                <div class="d-flex justify-center">
-                  <v-img
-                    :src="offer.image"
-                    alt="offer.name"
-                    height="400"
-                    class="align-center"
-                  ></v-img>
-                </div>
-                <v-card-title>{{ offer.name }}</v-card-title>
-                <v-card-text>Price: ${{ offer.price }}</v-card-text>
-                <v-card-text
-                  >Discount Price: ${{ offer.discountPrice }}</v-card-text
+      <template>
+        <v-row>
+          <v-col>
+            <h2>Special Offers</h2>
+            <v-carousel>
+              <v-carousel-item
+                v-for="(offer, index) in specialOffers"
+                :key="index"
+                :src="offer.image"
+              >
+                <v-row
+                  class="fill-height"
+                  style="width: 250px; height: 150px"
+                  align="top"
+                  justify="start"
                 >
-              </v-card>
-            </v-carousel-item>
-          </v-carousel>
-        </v-col>
-      </v-row>
+                  <v-card
+                    color="rgba(0, 0, 0, 0.6)"
+                    dark
+                    class="justify-end"
+                    style="width: 100%"
+                  >
+                    <v-card-title>{{ offer.name }}</v-card-title>
+                    <v-card-subtitle>Price: ${{ offer.price }}</v-card-subtitle>
+                    <v-card-subtitle
+                      >Discount Price: ${{
+                        offer.discountPrice
+                      }}</v-card-subtitle
+                    >
+                  </v-card>
+                </v-row>
+              </v-carousel-item>
+            </v-carousel>
+          </v-col>
+        </v-row>
+      </template>
+
+      This code sets the card width to 200px and positions it at the
+      center-bottom of the carousel.
 
       <v-row>
         <v-col>
