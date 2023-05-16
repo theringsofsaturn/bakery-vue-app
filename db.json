@@ -5,35 +5,45 @@
       "name": "Chocolate Cake",
       "image": "https://cdn.shopify.com/s/files/1/2725/9456/products/flavourtown-bakery-london-cakes_chocolate-party02_2048x2048.jpg?v=1535147440",
       "price": 15,
-      "discountPrice": 12
+      "discountPrice": 12,
+      "quantity": 1,
+      "description": "Chocolate cake is made with chocolate. It can also include other ingredients. These include fudge, vanilla creme, and other sweeteners.The history of chocolate cake goes back to 1764, when Dr. James Baker discovered how to make chocolate by grinding cocoa beans between two massive circular millstones."
     },
     {
       "id": 2,
       "name": "Vanilla Cupcake",
       "image": "https://th.bing.com/th/id/OIP.SlPoHKIBOPIl81i6jDIW1QHaHa?pid=ImgDet&rs=1",
       "price": 5,
-      "discountPrice": 4
+      "discountPrice": 4,
+      "quantity": 1,
+      "description": "A cupcake is a small cake designed to serve one person, which may be baked in a small thin paper or aluminum cup. As with larger cakes, icing and other cake decorations such as fruit and candy may be applied."
     },
     {
       "id": 3,
       "name": "Strawberry Delight",
       "image": "https://th.bing.com/th/id/R.00962543d72746e9489617ec77124d5a?rik=jDT%2bXfld70%2b8vQ&riu=http%3a%2f%2fbakedbroiledandbasted.com%2fwp-content%2fuploads%2f2018%2f05%2fStrawberry-Delight-Ice-Box-Cake-7.jpg&ehk=KwogsJfOBJCWBToENAL0MGhMKvk6QXpx0yqoroKCiO4%3d&risl=&pid=ImgRaw&r=0",
       "price": 20,
-      "discountPrice": 18
+      "discountPrice": 18,
+      "quantity": 1,
+      "description": "Strawberry Delight is a delicious dessert that is perfect for summer! Layers of pound cake, strawberries and frozen cream form the perfect treat for cooling off on a hot day!"
     },
     {
       "id": 4,
       "name": "Angel Cake",
       "image": "https://th.bing.com/th/id/R.84f9f40e59021fe262b725c8a6007a6d?rik=TXgNaGBPKgRuug&pid=ImgRaw&r=0",
       "price": 5,
-      "discountPrice": 4
+      "discountPrice": 4,
+      "quantity": 1,
+      "description": "Angel food cake, or angel cake, is a type of sponge cake made with egg whites, flour, and sugar. A whipping agent, such as cream of tartar, is commonly added. It differs from other cakes because it uses no butter. Its aerated texture comes from whipped egg white."
     },
     {
       "id": 5,
       "name": "Babka Cake",
       "image": "https://th.bing.com/th/id/OIP.oWFK9IXlY-EbVYjQMTzt3gHaHa?pid=ImgDet&rs=1",
       "price": 20,
-      "discountPrice": 18
+      "discountPrice": 18,
+      "quantity": 1,
+      "description": "A babka is a sweet braided bread which originated in the Jewish communities of Poland and Ukraine. It is popular in Israel and in the Jewish diaspora. "
     }
   ],
   "popularItems": [
@@ -47,67 +57,100 @@
       "id": 2,
       "name": "Macarons",
       "image": "https://th.bing.com/th/id/R.cfa6a9dd85bb27bdb7d6ee6b7dcbf008?rik=EOAofzaLYMQNPg&pid=ImgRaw&r=0",
-      "price": 10
+      "price": 10,
+      "discountPrice": 8,
+      "quantity": 1,
+      "description": "A macaron is a sweet meringue-based confection made with egg white, icing sugar, granulated sugar, almond meal, and food colouring. The macaron is commonly filled with ganache, buttercream, or jam filling sandwiched between two cookies."
     },
     {
       "id": 3,
       "name": "Chocolate Cake",
       "image": "https://cdn.shopify.com/s/files/1/2725/9456/products/flavourtown-bakery-london-cakes_chocolate-party02_2048x2048.jpg?v=1535147440",
-      "price": 15
+      "price": 15,
+      "discountPrice": 12,
+      "quantity": 1,
+      "description": "Chocolate cake is made with chocolate. It can also include other ingredients. These include fudge, vanilla creme, and other sweeteners.The history of chocolate cake goes back to 1764, when Dr. James Baker discovered how to make chocolate by grinding cocoa beans between two massive circular millstones."
     },
     {
       "id": 4,
       "name": "Vanilla Cupcake",
       "image": "https://i.pinimg.com/originals/20/07/a2/2007a24d65cfcf285e356e6cfb25ace5.jpg",
-      "price": 5
+      "price": 5,
+      "discountPrice": 4,
+      "quantity": 1,
+      "description": "A cupcake is a small cake designed to serve one person, which may be baked in a small thin paper or aluminum cup. As with larger cakes, icing and other cake decorations such as fruit and candy may be applied."
     },
     {
       "id": 5,
       "name": "Strawberry Delight",
       "image": "https://th.bing.com/th/id/R.00962543d72746e9489617ec77124d5a?rik=jDT%2bXfld70%2b8vQ&riu=http%3a%2f%2fbakedbroiledandbasted.com%2fwp-content%2fuploads%2f2018%2f05%2fStrawberry-Delight-Ice-Box-Cake-7.jpg&ehk=KwogsJfOBJCWBToENAL0MGhMKvk6QXpx0yqoroKCiO4%3d&risl=&pid=ImgRaw&r=0",
-      "price": 20
+      "price": 20,
+      "discountPrice": 18,
+      "quantity": 1,
+      "description": "Strawberry Delight is a delicious dessert that is perfect for summer! Layers of pound cake, strawberries and frozen cream form the perfect treat for cooling off on a hot day!"
     },
     {
       "id": 6,
       "name": "Angel Cake",
       "image": "https://th.bing.com/th/id/R.84f9f40e59021fe262b725c8a6007a6d?rik=TXgNaGBPKgRuug&pid=ImgRaw&r=0",
-      "price": 5
+      "price": 5,
+      "discountPrice": 4,
+      "quantity": 1,
+      "description": "Angel food cake, or angel cake, is a type of sponge cake made with egg whites, flour, and sugar. A whipping agent, such as cream of tartar, is commonly added. It differs from other cakes because it uses no butter. Its aerated texture comes from whipped egg white."
     },
     {
       "id": 7,
       "name": "Babka Cake",
       "image": "https://th.bing.com/th/id/OIP.oWFK9IXlY-EbVYjQMTzt3gHaHa?pid=ImgDet&rs=1",
-      "price": 20
+      "price": 20,
+      "discountPrice": 18,
+      "quantity": 1,
+      "description": "A babka is a sweet braided bread which originated in the Jewish communities of Poland and Ukraine. It is popular in Israel and in the Jewish diaspora. "
     },
     {
       "id": 8,
       "name": "Apple Cake",
       "image": "https://d1dd4ethwnlwo2.cloudfront.net/wp-content/uploads/2017/11/Cinnamon-Apple-Cake-3.jpg",
-      "price": 20
+      "price": 20,
+      "discountPrice": 18,
+      "quantity": 1,
+      "description": "Apple cake is a popular dessert produced with the main ingredient of apples. Such a cake is made through the process of slicing this sweet fruit to add fragrance to a plain cake base. Traditional apple cakes go a step further by including various spices such as nutmeg or cinnamon, which give a unique flavour."
     },
     {
       "id": 9,
       "name": "Battenberg Cake",
       "image": "https://i0.wp.com/everydaycooks.co.uk/wp-content/uploads/2020/10/easy-battenberg-cake-with-slice.jpg?fit=1200%2C1200&ssl=1",
-      "price": 10
+      "price": 10,
+      "discountPrice": 8,
+      "quantity": 1,
+      "description": "Battenberg or Battenburg is a light sponge cake with the pieces covered in jam. The cake is covered in marzipan and, when cut in cross section, displays a distinctive two-by-two check pattern alternately coloured pink and yellow. The cake is made by baking a yellow and a pink cake separately, and then cutting and combining the pieces in a chequered pattern."
     },
     {
       "id": 10,
       "name": "Banana Cake",
       "image": "https://i0.wp.com/www.melissassouthernstylekitchen.com/wp-content/uploads/2019/08/best-banana-cake003.jpg?fit=1416%2C2222&ssl=1",
-      "price": 15
+      "price": 15,
+      "discountPrice": 12,
+      "quantity": 1,
+      "description": "Banana cake is a cake prepared using banana as a primary ingredient and typical cake ingredients. It can be prepared in various manners, such as a layer cake, as muffins and as cupcakes. Steamed banana cake is found in Chinese, Indonesian and Vietnamese cuisine."
     },
     {
       "id": 11,
       "name": "Cheesecake with Raspberry",
       "image": "https://th.bing.com/th/id/R.9344b155b93e2c0b59ea36437f8d68c5?rik=yiR2yO7qo8Tz%2bg&pid=ImgRaw&r=0",
-      "price": 5
+      "price": 5,
+      "discountPrice": 4,
+      "quantity": 1,
+      "description": "Cheesecake is a sweet dessert consisting of one or more layers. The main, and thickest layer, consists of a mixture of a soft, fresh cheese, eggs, and sugar. If there is a bottom layer, it often consists of a crust or base made from crushed cookies, graham crackers, pastry, or sometimes sponge cake."
     },
     {
       "id": 12,
       "name": "Chestnut Cake",
       "image": "https://th.bing.com/th/id/R.ff6702dd56c27f812c8ce5a5ceaa782b?rik=9mx5jWc717nDaw&pid=ImgRaw&r=0",
-      "price": 20
+      "price": 20,
+      "discountPrice": 18,
+      "quantity": 1,
+      "description": "Chestnut cake is a cake prepared using chestnuts as a primary ingredient, and other typical cake ingredients. It can be prepared in various forms, such as a loaf, as muffins or cupcakes, as a layer cake, as a bundt cake, and as a cheesecake."
     }
   ],
   "products": [
@@ -115,73 +158,109 @@
       "id": 1,
       "name": "Red Velvet Cake",
       "image": "https://th.bing.com/th/id/OIP.PYyT8TEmDPMTjyuIWwdD-wHaFK?pid=ImgDet&rs=1",
-      "price": 20
+      "price": 20,
+      "discountPrice": 18,
+      "quantity": 1,
+      "description": "Red velvet cake is traditionally a red, red-brown, crimson or scarlet-colored chocolate layer cake, layered with ermine icing. Traditional recipes do not use food coloring, with the red color due to non-Dutched, anthocyanin-rich cocoa."
     },
     {
       "id": 2,
       "name": "Macarons",
       "image": "https://th.bing.com/th/id/R.cfa6a9dd85bb27bdb7d6ee6b7dcbf008?rik=EOAofzaLYMQNPg&pid=ImgRaw&r=0",
-      "price": 10
+      "price": 10,
+      "discountPrice": 8,
+      "quantity": 1,
+      "description": "A macaron is a sweet meringue-based confection made with egg white, icing sugar, granulated sugar, almond meal, and food colouring. The macaron is commonly filled with ganache, buttercream, or jam filling sandwiched between two cookies."
     },
     {
       "id": 3,
       "name": "Chocolate Cake",
       "image": "https://cdn.shopify.com/s/files/1/2725/9456/products/flavourtown-bakery-london-cakes_chocolate-party02_2048x2048.jpg?v=1535147440",
-      "price": 15
+      "price": 15,
+      "discountPrice": 12,
+      "quantity": 1,
+      "description": "Chocolate cake is made with chocolate. It can also include other ingredients. These include fudge, vanilla creme, and other sweeteners.The history of chocolate cake goes back to 1764, when Dr. James Baker discovered how to make chocolate by grinding cocoa beans between two massive circular millstones."
     },
     {
       "id": 4,
       "name": "Vanilla Cupcake",
       "image": "https://i.pinimg.com/originals/20/07/a2/2007a24d65cfcf285e356e6cfb25ace5.jpg",
-      "price": 5
+      "price": 5,
+      "discountPrice": 4,
+      "quantity": 1,
+      "description": "A cupcake is a small cake designed to serve one person, which may be baked in a small thin paper or aluminum cup. As with larger cakes, icing and other cake decorations such as fruit and candy may be applied."
     },
     {
       "id": 5,
       "name": "Strawberry Delight",
       "image": "https://th.bing.com/th/id/R.00962543d72746e9489617ec77124d5a?rik=jDT%2bXfld70%2b8vQ&riu=http%3a%2f%2fbakedbroiledandbasted.com%2fwp-content%2fuploads%2f2018%2f05%2fStrawberry-Delight-Ice-Box-Cake-7.jpg&ehk=KwogsJfOBJCWBToENAL0MGhMKvk6QXpx0yqoroKCiO4%3d&risl=&pid=ImgRaw&r=0",
-      "price": 20
+      "price": 20,
+      "discountPrice": 18,
+      "quantity": 1,
+      "description": "Strawberry Delight is a delicious dessert that is perfect for summer! Layers of pound cake, strawberries and frozen cream form the perfect treat for cooling off on a hot day!"
     },
     {
       "id": 6,
       "name": "Angel Cake",
       "image": "https://th.bing.com/th/id/R.84f9f40e59021fe262b725c8a6007a6d?rik=TXgNaGBPKgRuug&pid=ImgRaw&r=0",
-      "price": 5
+      "price": 5,
+      "discountPrice": 4,
+      "quantity": 1,
+      "description": "Angel food cake, or angel cake, is a type of sponge cake made with egg whites, flour, and sugar. A whipping agent, such as cream of tartar, is commonly added. It differs from other cakes because it uses no butter. Its aerated texture comes from whipped egg white."
     },
     {
       "id": 7,
       "name": "Babka Cake",
       "image": "https://th.bing.com/th/id/OIP.oWFK9IXlY-EbVYjQMTzt3gHaHa?pid=ImgDet&rs=1",
-      "price": 20
+      "price": 20,
+      "discountPrice": 18,
+      "quantity": 1,
+      "description": "A babka is a sweet braided bread which originated in the Jewish communities of Poland and Ukraine. It is popular in Israel and in the Jewish diaspora. "
     },
     {
       "id": 8,
       "name": "Apple Cake",
       "image": "https://d1dd4ethwnlwo2.cloudfront.net/wp-content/uploads/2017/11/Cinnamon-Apple-Cake-3.jpg",
-      "price": 20
+      "price": 20,
+      "discountPrice": 18,
+      "quantity": 1,
+      "description": "Apple cake is a popular dessert produced with the main ingredient of apples. Such a cake is made through the process of slicing this sweet fruit to add fragrance to a plain cake base. Traditional apple cakes go a step further by including various spices such as nutmeg or cinnamon, which give a unique flavour."
     },
     {
       "id": 9,
       "name": "Battenberg Cake",
       "image": "https://i0.wp.com/everydaycooks.co.uk/wp-content/uploads/2020/10/easy-battenberg-cake-with-slice.jpg?fit=1200%2C1200&ssl=1",
-      "price": 10
+      "price": 10,
+      "discountPrice": 8,
+      "quantity": 1,
+      "description": "Battenberg or Battenburg is a light sponge cake with the pieces covered in jam. The cake is covered in marzipan and, when cut in cross section, displays a distinctive two-by-two check pattern alternately coloured pink and yellow. The cake is made by baking a yellow and a pink cake separately, and then cutting and combining the pieces in a chequered pattern."
     },
     {
       "id": 10,
       "name": "Banana Cake",
       "image": "https://i0.wp.com/www.melissassouthernstylekitchen.com/wp-content/uploads/2019/08/best-banana-cake003.jpg?fit=1416%2C2222&ssl=1",
-      "price": 15
+      "price": 15,
+      "discountPrice": 12,
+      "quantity": 1,
+      "description": "Banana cake is a cake prepared using banana as a primary ingredient and typical cake ingredients. It can be prepared in various manners, such as a layer cake, as muffins and as cupcakes. Steamed banana cake is found in Chinese, Indonesian and Vietnamese cuisine."
     },
     {
       "id": 11,
       "name": "Cheesecake with Raspberry",
       "image": "https://th.bing.com/th/id/R.9344b155b93e2c0b59ea36437f8d68c5?rik=yiR2yO7qo8Tz%2bg&pid=ImgRaw&r=0",
-      "price": 5
+      "price": 5,
+      "discountPrice": 4,
+      "quantity": 1,
+      "description": "Cheesecake is a sweet dessert consisting of one or more layers. The main, and thickest layer, consists of a mixture of a soft, fresh cheese, eggs, and sugar. If there is a bottom layer, it often consists of a crust or base made from crushed cookies, graham crackers, pastry, or sometimes sponge cake."
     },
     {
       "id": 12,
       "name": "Chestnut Cake",
       "image": "https://th.bing.com/th/id/R.ff6702dd56c27f812c8ce5a5ceaa782b?rik=9mx5jWc717nDaw&pid=ImgRaw&r=0",
-      "price": 20
+      "price": 20,
+      "discountPrice": 18,
+      "quantity": 1,
+      "description": "Chestnut cake is a cake prepared using chestnuts as a primary ingredient, and other typical cake ingredients. It can be prepared in various forms, such as a loaf, as muffins or cupcakes, as a layer cake, as a bundt cake, and as a cheesecake."
     }
   ]
 }
