@@ -14,6 +14,7 @@
 
     <v-btn text to="/">Home</v-btn>
     <v-btn text to="/products">Products</v-btn>
+    <v-btn text to="/dashboard">Admin</v-btn>
     <v-btn text to="/login">Login</v-btn>
   </v-app-bar>
 </template>

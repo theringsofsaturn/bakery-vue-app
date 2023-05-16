@@ -52,10 +52,24 @@ export default {
   methods: {
     login() {
       if (this.$refs.form.validate()) {
-        // TODO: Perform API request to check if the email and password are correct
-        // If correct, redirect to the dashboard
-        // For now, let's just log the user in directly
-        this.$router.push('/dashboard');
+        // Check if the email and password are correct
+        if (
+          (this.email === 'luana@example.com' &&
+            this.password === 'password') ||
+          (this.email === 'maria@example.com' && this.password === 'password')
+        ) {
+          // If correct, set the loggedIn flag in local storage and redirect to the dashboard
+          localStorage.setItem('loggedIn', 'true');
+          let redirect = this.$route.query.redirect;
+          if (redirect) {
+            this.$router.push(redirect);
+          } else {
+            this.$router.push('/dashboard');
+          }
+        } else {
+          // If incorrect, show an error message
+          alert('Incorrect email or password');
+        }
       }
     },
   },
