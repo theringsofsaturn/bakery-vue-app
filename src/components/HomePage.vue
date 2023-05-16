@@ -22,7 +22,6 @@
                 <v-row
                   class="fill-height"
                   style="width: 250px; height: 150px"
-                  align="top"
                   justify="start"
                 >
                   <v-card
