@@ -46,9 +46,6 @@
         </v-row>
       </template>
 
-      This code sets the card width to 200px and positions it at the
-      center-bottom of the carousel.
-
       <v-row>
         <v-col>
           <h2>Our Popular Items</h2>
