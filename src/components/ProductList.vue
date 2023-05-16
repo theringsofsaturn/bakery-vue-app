@@ -58,7 +58,7 @@ export default {
   },
   methods: {
     viewDetails(product) {
-      this.$router.push({ name: 'ProductDetail', params: { id: product.id } });
+      this.$router.push({ name: 'product-detail', params: { id: product.id } });
     },
   },
 };
