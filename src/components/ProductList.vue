@@ -28,7 +28,9 @@
             </div>
             <v-card-title>{{ product.name }}</v-card-title>
             <v-card-subtitle>Price: ${{ product.price }}</v-card-subtitle>
-            <v-btn @click="viewDetails(product)">View Details</v-btn>
+            <v-btn @click="viewDetails(product)" class="details-btn"
+              >View Details</v-btn
+            >
           </v-card>
         </v-col>
       </v-row>
@@ -63,3 +65,11 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.details-btn {
+  background-color: #f50057 !important;
+  color: white;
+  margin: 10px;
+}
+</style>

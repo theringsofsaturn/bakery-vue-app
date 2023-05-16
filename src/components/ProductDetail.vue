@@ -51,8 +51,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.product-card {
-  margin-top: 16px; /* Adjust this value as needed */
-}
-</style>
+<style scoped></style>

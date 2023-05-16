@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 import HomePage from '../components/HomePage.vue';
 import ProductList from '../components/ProductList.vue';
 import ProductDetail from '../components/ProductDetail.vue';
+import LoginPage from '../components/LoginPage.vue';
 
 Vue.use(VueRouter);
 
@@ -22,6 +23,11 @@ const routes = [
     path: '/product/:id',
     name: 'product-detail',
     component: ProductDetail,
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: LoginPage,
   },
 ];
 
