@@ -99,12 +99,10 @@ export default {
       });
     },
     editItem(item) {
-      this.editedIndex = this.products.findIndex((p) => p.id === item.id);
-      if (item) {
-        this.editedItem = Object.assign({}, item);
-      } else {
-        this.editedItem = Object.assign({}, this.defaultItem);
-      }
+      if (!item) return;
+
+      this.editedIndex = this.products.indexOf(item);
+      this.editedItem = Object.assign({}, item);
       this.dialog = true;
     },
     deleteItem(item) {
