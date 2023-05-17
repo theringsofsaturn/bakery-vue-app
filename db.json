@@ -263,22 +263,10 @@
       "description": "Chestnut cake is a cake prepared using chestnuts as a primary ingredient, and other typical cake ingredients. It can be prepared in various forms, such as a loaf, as muffins or cupcakes, as a layer cake, as a bundt cake, and as a cheesecake."
     },
     {
+      "id": 13,
       "name": "Test New Item",
-      "price": "15",
-      "quantity": "1",
-      "id": 13
-    },
-    {
-      "name": "Second Test Updated",
-      "price": "20",
-      "quantity": "1",
-      "id": 14
-    },
-    {
-      "name": "Thrird Test ",
-      "price": "12",
-      "quantity": "2",
-      "id": 15
+      "price": "5",
+      "quantity": "2"
     }
   ]
 }

@@ -3,7 +3,11 @@
   <v-app>
     <v-main>
       <v-container>
-        <v-data-table :headers="headers" :items="products" class="elevation-1">
+        <v-data-table
+          :headers="headers"
+          :items="displayProducts"
+          class="elevation-1"
+        >
           <template v-slot:item.actions="{ item }">
             <v-icon small class="mr-2" @click="editItem(item)"
               >mdi-pencil</v-icon
@@ -70,6 +74,7 @@ import axios from 'axios';
 
 export default {
   name: 'AdminDashboard',
+
   data: () => ({
     dialog: false,
     headers: [
@@ -80,26 +85,32 @@ export default {
       { text: 'Actions', value: 'actions', sortable: false },
     ],
     products: [],
+    displayProducts: [],
     editedIndex: -1,
     editedItem: {
+      id: '',
       name: '',
-      price: '',
-      quantity: '',
+      price: 0,
+      quantity: 0,
     },
     defaultItem: {
+      id: '',
       name: '',
-      price: '',
-      quantity: '',
+      price: 0,
+      quantity: 0,
     },
   }),
+
   methods: {
     getProducts() {
       axios.get('http://localhost:3000/products').then((response) => {
         this.products = response.data;
+        this.displayProducts = [...this.products];
       });
     },
+
     editItem(item) {
-      this.editedIndex = this.products.indexOf(item);
+      this.editedIndex = this.displayProducts.indexOf(item);
       if (this.editedIndex !== -1) {
         this.editedItem = Object.assign({}, item);
       } else {
@@ -108,23 +119,21 @@ export default {
       }
       this.dialog = true;
     },
+
     deleteItem(item) {
-      const index = this.products.indexOf(item);
-      confirm('Are you sure you want to delete this item?') &&
+      const index = this.displayProducts.indexOf(item);
+      if (confirm('Are you sure you want to delete this item?')) {
         axios
           .delete(`http://localhost:3000/products/${item.id}`)
-          // eslint-disable-next-line no-unused-vars
           .then((response) => {
-            this.products.splice(index, 1);
-          });
+            if (response.status === 200) {
+              this.displayProducts.splice(index, 1);
+            }
+          })
+          .catch((error) => console.error(error));
+      }
     },
-    close() {
-      this.dialog = false;
-      setTimeout(() => {
-        this.editedItem = Object.assign({}, this.defaultItem);
-        this.editedIndex = -1;
-      }, 300);
-    },
+
     save() {
       if (this.editedIndex > -1) {
         axios
@@ -132,20 +141,37 @@ export default {
             `http://localhost:3000/products/${this.editedItem.id}`,
             this.editedItem
           )
-          // eslint-disable-next-line no-unused-vars
           .then((response) => {
-            Object.assign(this.products[this.editedIndex], this.editedItem);
-          });
+            if (response.status === 200) {
+              Object.assign(
+                this.displayProducts[this.editedIndex],
+                this.editedItem
+              );
+            }
+          })
+          .catch((error) => console.error(error));
       } else {
         axios
           .post('http://localhost:3000/products', this.editedItem)
           .then((response) => {
-            this.products.push(response.data);
-          });
+            if (response.status === 201) {
+              this.displayProducts.push(this.editedItem);
+            }
+          })
+          .catch((error) => console.error(error));
       }
       this.close();
     },
+
+    close() {
+      this.dialog = false;
+      setTimeout(() => {
+        this.editedItem = Object.assign({}, this.defaultItem);
+        this.editedIndex = -1;
+      }, 300);
+    },
   },
+
   mounted() {
     this.getProducts();
   },
