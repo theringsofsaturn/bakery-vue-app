@@ -99,15 +99,13 @@ export default {
       });
     },
     editItem(item) {
-      const index = this.products.indexOf(item);
-
-      if (index !== -1) {
-        this.editedIndex = index;
-        this.editedItem = Object.assign({}, this.products[index]);
-        this.dialog = true;
+      this.editedIndex = this.products.indexOf(item);
+      if (item) {
+        this.editedItem = Object.assign({}, item);
       } else {
-        console.error('Item not found');
+        this.editedItem = Object.assign({}, this.defaultItem); 
       }
+      this.dialog = true;
     },
     deleteItem(item) {
       const index = this.products.indexOf(item);
