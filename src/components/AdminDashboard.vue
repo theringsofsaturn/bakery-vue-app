@@ -99,10 +99,13 @@ export default {
       });
     },
     editItem(item) {
-      if (!item) return;
-
       this.editedIndex = this.products.indexOf(item);
-      this.editedItem = Object.assign({}, item);
+      if (this.editedIndex !== -1) {
+        this.editedItem = Object.assign({}, item);
+      } else {
+        console.error('Item not found in the products list');
+        return;
+      }
       this.dialog = true;
     },
     deleteItem(item) {
