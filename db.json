@@ -156,9 +156,9 @@
   "products": [
     {
       "id": 1,
-      "name": "Red Velvet updated",
+      "name": "Red Velvet update",
       "image": "https://th.bing.com/th/id/OIP.PYyT8TEmDPMTjyuIWwdD-wHaFK?pid=ImgDet&rs=1",
-      "price": "21",
+      "price": "20",
       "discountPrice": 18,
       "quantity": "2",
       "description": "Red velvet cake is traditionally a red, red-brown, crimson or scarlet-colored chocolate layer cake, layered with ermine icing. Traditional recipes do not use food coloring, with the red color due to non-Dutched, anthocyanin-rich cocoa."
