@@ -147,6 +147,7 @@ export default {
                 this.displayProducts[this.editedIndex],
                 this.editedItem
               );
+              this.close();
             }
           })
           .catch((error) => console.error(error));
@@ -155,13 +156,13 @@ export default {
           .post('http://localhost:3000/products', this.editedItem)
           .then((response) => {
             if (response.status === 201) {
-              this.editedItem.id = response.data.id; 
+              this.editedItem.id = response.data.id;
               this.displayProducts.push(this.editedItem);
+              this.close();
             }
           })
           .catch((error) => console.error(error));
       }
-      this.close();
     },
 
     close() {
