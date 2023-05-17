@@ -156,25 +156,25 @@
   "products": [
     {
       "id": 1,
-      "name": "Red Velvet Cake",
+      "name": "Red Velvet updated",
       "image": "https://th.bing.com/th/id/OIP.PYyT8TEmDPMTjyuIWwdD-wHaFK?pid=ImgDet&rs=1",
-      "price": 20,
+      "price": "21",
       "discountPrice": 18,
-      "quantity": 1,
+      "quantity": "2",
       "description": "Red velvet cake is traditionally a red, red-brown, crimson or scarlet-colored chocolate layer cake, layered with ermine icing. Traditional recipes do not use food coloring, with the red color due to non-Dutched, anthocyanin-rich cocoa."
     },
     {
       "id": 2,
       "name": "Macarons",
       "image": "https://th.bing.com/th/id/R.cfa6a9dd85bb27bdb7d6ee6b7dcbf008?rik=EOAofzaLYMQNPg&pid=ImgRaw&r=0",
-      "price": 10,
+      "price": "15",
       "discountPrice": 8,
       "quantity": 1,
       "description": "A macaron is a sweet meringue-based confection made with egg white, icing sugar, granulated sugar, almond meal, and food colouring. The macaron is commonly filled with ganache, buttercream, or jam filling sandwiched between two cookies."
     },
     {
       "id": 3,
-      "name": "Chocolate Cake",
+      "name": "Chocolate Cake ",
       "image": "https://cdn.shopify.com/s/files/1/2725/9456/products/flavourtown-bakery-london-cakes_chocolate-party02_2048x2048.jpg?v=1535147440",
       "price": 15,
       "discountPrice": 12,
@@ -261,6 +261,24 @@
       "discountPrice": 18,
       "quantity": 1,
       "description": "Chestnut cake is a cake prepared using chestnuts as a primary ingredient, and other typical cake ingredients. It can be prepared in various forms, such as a loaf, as muffins or cupcakes, as a layer cake, as a bundt cake, and as a cheesecake."
+    },
+    {
+      "name": "Test New Item",
+      "price": "15",
+      "quantity": "1",
+      "id": 13
+    },
+    {
+      "name": "Second Test Updated",
+      "price": "20",
+      "quantity": "1",
+      "id": 14
+    },
+    {
+      "name": "Thrird Test ",
+      "price": "12",
+      "quantity": "2",
+      "id": 15
     }
   ]
 }
