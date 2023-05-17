@@ -155,6 +155,7 @@ export default {
           .post('http://localhost:3000/products', this.editedItem)
           .then((response) => {
             if (response.status === 201) {
+              this.editedItem.id = response.data.id; 
               this.displayProducts.push(this.editedItem);
             }
           })

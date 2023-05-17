@@ -267,6 +267,12 @@
       "name": "Test New Item",
       "price": "5",
       "quantity": "2"
+    },
+    {
+      "id": 14,
+      "name": "Test another item id bug",
+      "price": "2",
+      "quantity": "5"
     }
   ]
 }
