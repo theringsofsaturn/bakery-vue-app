@@ -15,14 +15,22 @@
     <v-btn text to="/">Home</v-btn>
     <v-btn text to="/products">Products</v-btn>
     <v-btn text to="/dashboard">Admin</v-btn>
-    <v-btn text to="/login">Login</v-btn>
     <v-btn text to="/register">Register</v-btn>
+    <v-btn text to="/login">Login</v-btn>
+    <v-btn @click="logout">Logout</v-btn>
   </v-app-bar>
 </template>
 
 <script>
 export default {
   name: 'TopNavBar',
+
+  methods: {
+    logout() {
+      localStorage.removeItem('token');
+      this.$router.push({ name: 'login' });
+    },
+  },
 };
 </script>
 

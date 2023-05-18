@@ -14,7 +14,6 @@
           <v-card-subtitle>{{ product.description }}</v-card-subtitle>
           <v-card-text>
             <div class="title">Price: ${{ product.price }}</div>
-            <!-- Add more details as required -->
             <div class="subtitle">Category: {{ product.category }}</div>
             <div>Stock: {{ product.stock }}</div>
             <div>SKU: {{ product.sku }}</div>
