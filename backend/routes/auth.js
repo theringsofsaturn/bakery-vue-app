@@ -3,9 +3,9 @@ import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
 import auth from '../middleware/authenticate.js';
 
-const router = express.Router();
+const authRouter = express.Router();
 
-router.post('/register', async (req, res) => {
+authRouter.post('/register', async (req, res) => {
   const { username, password } = req.body;
 
   try {
@@ -21,7 +21,7 @@ router.post('/register', async (req, res) => {
   }
 });
 
-router.post('/login', async (req, res) => {
+authRouter.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
   try {
@@ -46,7 +46,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
-router.get('/profile', auth, async (req, res) => {
+authRouter.get('/profile', auth, async (req, res) => {
   // If auth middleware does not call next(), this code won't run
   try {
     const user = await User.findById(req.userId);
@@ -56,4 +56,4 @@ router.get('/profile', auth, async (req, res) => {
   }
 });
 
-export default router;
+export default authRouter;

@@ -37,6 +37,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'LoginPage',
   data: () => ({
@@ -50,27 +52,28 @@ export default {
     passwordRules: [(v) => !!v || 'Password is required'],
   }),
   methods: {
-    login() {
-      if (this.$refs.form.validate()) {
-        // Check if the email and password are correct
-        if (
-          (this.email === 'luana@example.com' &&
-            this.password === 'password') ||
-          (this.email === 'maria@example.com' && this.password === 'password')
-        ) {
-          // If correct, set the loggedIn flag in local storage and redirect to the dashboard
-          localStorage.setItem('loggedIn', 'true');
-          let redirect = this.$route.query.redirect;
-          if (redirect) {
-            this.$router.push(redirect);
-          } else {
-            this.$router.push('/dashboard');
+    methods: {
+      async login() {
+        if (this.$refs.form.validate()) {
+          try {
+            const response = await axios.post('http://localhost:3000/login', {
+              username: this.email,
+              password: this.password,
+            });
+
+            localStorage.setItem('token', response.data.token);
+
+            let redirect = this.$route.query.redirect;
+            if (redirect) {
+              this.$router.push(redirect);
+            } else {
+              this.$router.push('/dashboard');
+            }
+          } catch (error) {
+            alert(error.response.data.message);
           }
-        } else {
-          // If incorrect, show an error message
-          alert('Incorrect email or password');
         }
-      }
+      },
     },
   },
 };
