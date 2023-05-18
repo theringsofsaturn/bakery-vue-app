@@ -2,14 +2,16 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import authRouter from './routes/auth.js';
+import productRouter from './routes/products.js';
 
 const app = express();
-const port = 3001;
+const port = 3000;
 
 app.use(express.json());
 app.use(cors());
 
 app.use('/', authRouter);
+app.use('/', productRouter);
 
 mongoose
   .connect('mongodb+srv://ishmael:dostojevski@cluster0.oqgfe.mongodb.net/', {

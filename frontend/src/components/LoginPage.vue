@@ -52,28 +52,26 @@ export default {
     passwordRules: [(v) => !!v || 'Password is required'],
   }),
   methods: {
-    methods: {
-      async login() {
-        if (this.$refs.form.validate()) {
-          try {
-            const response = await axios.post('http://localhost:3000/login', {
-              username: this.email,
-              password: this.password,
-            });
+    async login() {
+      if (this.$refs.form.validate()) {
+        try {
+          const response = await axios.post('http://localhost:3000/login', {
+            username: this.email,
+            password: this.password,
+          });
 
-            localStorage.setItem('token', response.data.token);
+          localStorage.setItem('token', response.data.token);
 
-            let redirect = this.$route.query.redirect;
-            if (redirect) {
-              this.$router.push(redirect);
-            } else {
-              this.$router.push('/dashboard');
-            }
-          } catch (error) {
-            alert(error.response.data.message);
+          let redirect = this.$route.query.redirect;
+          if (redirect) {
+            this.$router.push(redirect);
+          } else {
+            this.$router.push('/dashboard');
           }
+        } catch (error) {
+          alert(error.response.data.message);
         }
-      },
+      }
     },
   },
 };
