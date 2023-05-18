@@ -1,6 +1,7 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
+import auth from '../middleware/authenticate.js';
 
 const router = express.Router();
 
@@ -42,6 +43,16 @@ router.post('/login', async (req, res) => {
     res.status(200).send({ token });
   } catch (error) {
     res.status(400).send(error);
+  }
+});
+
+router.get('/profile', auth, async (req, res) => {
+  // If auth middleware does not call next(), this code won't run
+  try {
+    const user = await User.findById(req.userId);
+    res.status(200).send(user);
+  } catch (error) {
+    res.status(500).send(error);
   }
 });
 
