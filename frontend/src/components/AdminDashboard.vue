@@ -8,6 +8,9 @@
           :items="displayProducts"
           class="elevation-1"
         >
+          <template v-slot:item.price="{ item }">
+            {{ calculatePrice(item) }}
+          </template>
           <template v-slot:item.actions="{ item }">
             <v-icon small class="mr-2" @click="editItem(item)"
               >mdi-pencil</v-icon
@@ -71,6 +74,7 @@
 
 <script>
 import axios from 'axios';
+import moment from 'moment';
 
 export default {
   name: 'AdminDashboard',
@@ -171,6 +175,23 @@ export default {
         this.editedItem = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
       }, 300);
+    },
+  },
+
+  computed: {
+    calculatePrice() {
+      return (product) => {
+        const daysPassed = moment().diff(moment(product.created_at), 'days');
+        if (daysPassed === 0) {
+          return product.price;
+        } else if (daysPassed === 1) {
+          return product.price * 0.8;
+        } else if (daysPassed === 2) {
+          return product.price * 0.2;
+        } else {
+          return 0;
+        }
+      };
     },
   },
 
