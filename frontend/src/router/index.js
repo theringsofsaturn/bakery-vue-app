@@ -5,6 +5,7 @@ import HomePage from '../components/HomePage.vue';
 import ProductList from '../components/ProductList.vue';
 import ProductDetail from '../components/ProductDetail.vue';
 import LoginPage from '../components/LoginPage.vue';
+import RegisterPage from '../components/RegisterPage.vue';
 import AdminDashboard from '../components/AdminDashboard.vue';
 
 Vue.use(VueRouter);
@@ -29,6 +30,11 @@ const routes = [
     path: '/login',
     name: 'login',
     component: LoginPage,
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: RegisterPage,
   },
   {
     path: '/dashboard',
