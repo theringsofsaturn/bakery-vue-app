@@ -3,9 +3,7 @@
     <v-container fluid>
       <v-row>
         <v-col>
-          <h1>
-            Welcome to Luana & Maria's Bakery - Your sweetest destination!
-          </h1>
+          <h1>Welcome to Luana & Maria's Bakery - Your sweetest destination!</h1>
         </v-col>
       </v-row>
 
@@ -17,7 +15,7 @@
               <v-carousel-item
                 v-for="(offer, index) in specialOffers"
                 :key="index"
-                :src="offer.image"
+                :src="'http://localhost:3000' + offer.imageUrl"
               >
                 <v-row
                   class="fill-height"
@@ -32,11 +30,8 @@
                   >
                     <v-card-title>{{ offer.name }}</v-card-title>
                     <v-card-subtitle>Price: ${{ offer.price }}</v-card-subtitle>
-                    <v-card-subtitle
-                      >Discount Price: ${{
-                        offer.discountPrice
-                      }}</v-card-subtitle
-                    >
+                    <v-card-subtitle>Discount Price: ${{ offer.discountPrice }}</v-card-subtitle>
+                    <v-card-subtitle>Expires: {{ offer.expires }}</v-card-subtitle>
                   </v-card>
                 </v-row>
               </v-carousel-item>
@@ -60,8 +55,8 @@
               <v-card>
                 <div class="d-flex justify-center">
                   <v-img
-                    :src="item.image"
-                    alt="item.name"
+                    :src="'http://localhost:3000' + item.imageUrl"
+                    :alt="item.name"
                     height="200"
                     width="300"
                     class="align-center pa-2"
@@ -69,6 +64,8 @@
                 </div>
                 <v-card-title>{{ item.name }}</v-card-title>
                 <v-card-subtitle>Price: ${{ item.price }}</v-card-subtitle>
+                <v-card-subtitle>Discount Price: ${{ item.discountPrice }}</v-card-subtitle>
+                <v-card-subtitle>Expires: {{ item.expires }}</v-card-subtitle>
               </v-card>
             </v-col>
           </v-row>
@@ -80,6 +77,7 @@
 
 <script>
 import axios from 'axios';
+import moment from 'moment';
 
 export default {
   name: 'HomePage',
@@ -91,22 +89,48 @@ export default {
   },
   created() {
     axios
-      .get('http://localhost:3000/specialOffers')
+      .get('http://localhost:3000/products?specialOffer=true')
       .then((response) => {
-        this.specialOffers = response.data;
+        this.specialOffers = response.data.map((offer) => ({
+          ...offer,
+          discountPrice: this.calculatePrice(offer),
+          expires: this.calculateExpiration(offer),
+        }));
       })
       .catch((error) => {
         console.log(error);
       });
 
     axios
-      .get('http://localhost:3000/popularItems')
+      .get('http://localhost:3000/products?popularItem=true')
       .then((response) => {
-        this.popularItems = response.data;
+        this.popularItems = response.data.map((item) => ({
+          ...item,
+          discountPrice: this.calculatePrice(item),
+          expires: this.calculateExpiration(item),
+        }));
       })
       .catch((error) => {
         console.log(error);
       });
+  },
+  methods: {
+    calculatePrice(product) {
+      const daysPassed = moment().diff(moment(product.created_at), 'days');
+      if (daysPassed === 0) {
+        return product.price;
+      } else if (daysPassed === 1) {
+        return product.price * 0.8;
+      } else if (daysPassed === 2) {
+        return product.price * 0.2;
+      } else {
+        return 0;
+      }
+    },
+    calculateExpiration(product) {
+      const expirationDate = moment(product.created_at).add(3, 'days');
+      return expirationDate.format('YYYY-MM-DD');
+    },
   },
 };
 </script>

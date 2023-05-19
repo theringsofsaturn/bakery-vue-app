@@ -66,11 +66,10 @@
                   <v-col cols="12">
                     <v-file-input
                       v-model="editedItem.image"
-                      :clearable="true"
-                      label="Upload Image"
-                      prepend-icon=""
+                      label="Image"
+                      prepend-icon="mdi-camera"
                       accept="image/*"
-                      placeholder="Select an image"
+                      placeholder="Select a product image"
                     ></v-file-input>
                   </v-col>
                 </v-row>
@@ -113,7 +112,6 @@ export default {
       price: 0,
       quantity: 0,
       description: '',
-      image: null,
     },
     defaultItem: {
       id: '',
@@ -121,6 +119,7 @@ export default {
       price: 0,
       quantity: 0,
       description: '',
+      image: null,
     },
   }),
 
@@ -136,6 +135,7 @@ export default {
       this.editedIndex = this.displayProducts.indexOf(item);
       if (this.editedIndex !== -1) {
         this.editedItem = Object.assign({}, item);
+        this.editedItem.image = null; // Clear the file input when editing an item.
       } else {
         console.error('Item not found in the products list');
         return;
@@ -158,23 +158,13 @@ export default {
     },
 
     save() {
-      let formData = new FormData();
-      formData.append('name', this.editedItem.name);
-      formData.append('price', this.editedItem.price);
-      formData.append('quantity', this.editedItem.quantity);
-      formData.append('description', this.editedItem.description);
-      formData.append('image', this.editedItem.image);
-
+      // ...
       if (this.editedIndex > -1) {
+        // Update existing product without image upload
         axios
           .put(
             `http://localhost:3000/products/${this.editedItem._id}`,
-            formData,
-            {
-              headers: {
-                'Content-Type': 'multipart/form-data',
-              },
-            }
+            this.editedItem
           )
           .then((response) => {
             Object.assign(
@@ -185,11 +175,24 @@ export default {
           })
           .catch((error) => console.error(error));
       } else {
+        // Create new product with image upload
+        let productData = new FormData();
+        productData.append('name', this.editedItem.name);
+        productData.append('price', this.editedItem.price);
+        productData.append('quantity', this.editedItem.quantity);
+        productData.append('description', this.editedItem.description);
+        productData.append('file', this.editedItem.image);
+
         axios
-          .post('http://localhost:3000/products', formData, {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
+          .post('http://localhost:3000/upload', productData)
+          .then((response) => {
+            // After image upload is complete, create the product
+            this.editedItem.imageUrl = `/images/${response.data}`;
+
+            return axios.post(
+              'http://localhost:3000/products',
+              this.editedItem
+            );
           })
           .then((response) => {
             this.displayProducts.push(response.data);
@@ -203,6 +206,7 @@ export default {
       this.dialog = false;
       setTimeout(() => {
         this.editedItem = Object.assign({}, this.defaultItem);
+        this.editedItem.image = null; // Clear the file input when closing the dialog.
         this.editedIndex = -1;
       }, 300);
     },

@@ -1,6 +1,8 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import path from 'path';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
 import cors from 'cors';
 import authRouter from './routes/auth.js';
 import productRouter from './routes/products.js';
@@ -25,6 +27,7 @@ app.use('/', authRouter);
 app.use('/', productRouter);
 app.use('/', uploadRouter);
 // app.use('/images', express.static('images'));
+const __dirname = dirname(fileURLToPath(import.meta.url));
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
 mongoose

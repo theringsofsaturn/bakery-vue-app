@@ -4,8 +4,8 @@
       <v-col cols="12" sm="8" md="6">
         <v-card v-if="product" class="mx-auto product-card" outlined>
           <v-img
-            :src="product.image"
-            alt="product.name"
+            :src="'http://localhost:3000' + product.imageUrl"
+            :alt="product.name"
             height="200"
             width="300"
             class="align-center pa-2"
@@ -14,9 +14,10 @@
           <v-card-subtitle>{{ product.description }}</v-card-subtitle>
           <v-card-text>
             <div class="title">Price: ${{ product.price }}</div>
-            <div class="subtitle">Category: {{ product.category }}</div>
-            <div>Stock: {{ product.stock }}</div>
-            <div>SKU: {{ product.sku }}</div>
+            <div class="subtitle">
+              Discount Price: ${{ product.discountPrice }}
+            </div>
+            <div class="subtitle">Expires: {{ product.expires }}</div>
           </v-card-text>
           <v-card-actions>
             <v-btn color="primary" @click="addToCart(product)"
@@ -31,6 +32,7 @@
 
 <script>
 import axios from 'axios';
+import moment from 'moment';
 
 export default {
   data() {
@@ -42,12 +44,32 @@ export default {
     const id = this.$route.params.id;
     try {
       const response = await axios.get(`http://localhost:3000/products/${id}`);
-      this.product = response.data;
+      this.product = {
+        ...response.data,
+        discountPrice: this.calculatePrice(response.data),
+        expires: this.calculateExpiration(response.data),
+      };
     } catch (error) {
       console.error(error);
     }
   },
+  methods: {
+    calculatePrice(product) {
+      const daysPassed = moment().diff(moment(product.created_at), 'days');
+      if (daysPassed === 0) {
+        return product.price;
+      } else if (daysPassed === 1) {
+        return product.price * 0.8;
+      } else if (daysPassed === 2) {
+        return product.price * 0.2;
+      } else {
+        return 0;
+      }
+    },
+    calculateExpiration(product) {
+      const expirationDate = moment(product.created_at).add(3, 'days');
+      return expirationDate.format('YYYY-MM-DD');
+    },
+  },
 };
 </script>
-
-<style scoped></style>

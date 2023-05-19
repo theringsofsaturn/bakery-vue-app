@@ -19,8 +19,8 @@
           <v-card>
             <div class="d-flex justify-center">
               <v-img
-                :src="product.image"
-                alt="product.name"
+                :src="'http://localhost:3000' + product.imageUrl"
+                :alt="product.name"
                 height="200"
                 width="300"
                 class="align-center pa-2"
@@ -28,6 +28,10 @@
             </div>
             <v-card-title>{{ product.name }}</v-card-title>
             <v-card-subtitle>Price: ${{ product.price }}</v-card-subtitle>
+            <v-card-subtitle
+              >Discount Price: ${{ product.discountPrice }}</v-card-subtitle
+            >
+            <v-card-subtitle>Expires: {{ product.expires }}</v-card-subtitle>
             <v-btn @click="viewDetails(product)" class="details-btn"
               >View Details</v-btn
             >
@@ -40,6 +44,7 @@
 
 <script>
 import axios from 'axios';
+import moment from 'moment';
 
 export default {
   name: 'ProductList',
@@ -52,13 +57,33 @@ export default {
     axios
       .get('http://localhost:3000/products')
       .then((response) => {
-        this.productList = response.data;
+        this.productList = response.data.map((product) => ({
+          ...product,
+          discountPrice: this.calculatePrice(product),
+          expires: this.calculateExpiration(product),
+        }));
       })
       .catch((error) => {
         console.log(error);
       });
   },
   methods: {
+    calculatePrice(product) {
+      const daysPassed = moment().diff(moment(product.created_at), 'days');
+      if (daysPassed === 0) {
+        return product.price;
+      } else if (daysPassed === 1) {
+        return product.price * 0.8;
+      } else if (daysPassed === 2) {
+        return product.price * 0.2;
+      } else {
+        return 0;
+      }
+    },
+    calculateExpiration(product) {
+      const expirationDate = moment(product.created_at).add(3, 'days');
+      return expirationDate.format('YYYY-MM-DD');
+    },
     viewDetails(product) {
       this.$router.push({
         name: 'product-detail',
@@ -68,11 +93,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.details-btn {
-  background-color: #f50057 !important;
-  color: white;
-  margin: 10px;
-}
-</style>
