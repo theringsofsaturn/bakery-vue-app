@@ -1,7 +1,4 @@
-// Import necessary packages
 import express from 'express';
-import mongoose from 'mongoose';
-import cors from 'cors';
 import Product from '../models/Product.js';
 
 const productRouter = express.Router();
@@ -30,7 +27,14 @@ productRouter.post('/products', async (req, res) => {
   try {
     console.log('Received a POST request to /products');
     console.log('Request body:', req.body);
-    const newProduct = new Product(req.body);
+
+    const newProduct = new Product({
+      ...req.body,
+      // imageUrl is taken directly from req.body
+      // req.file is not accessed because there is no file attached to this request
+      imageUrl: req.body.imageUrl || null,
+    });
+
     const savedProduct = await newProduct.save();
     console.log('Saved product:', savedProduct);
     res.json(savedProduct);

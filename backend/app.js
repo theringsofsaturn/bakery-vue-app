@@ -1,44 +1,31 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import path from 'path';
 import cors from 'cors';
-import multer from 'multer';
 import authRouter from './routes/auth.js';
 import productRouter from './routes/products.js';
+import uploadRouter from './routes/upload.js';
 
 const app = express();
 const port = 3000;
 
 app.use(express.json());
 app.use(cors());
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  );
+  res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
+  next();
+});
 
 app.use('/', authRouter);
 app.use('/', productRouter);
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, './uploads/');
-  },
-  filename: (req, file, cb) => {
-    cb(null, new Date().toISOString().replace(/:/g, '-') + file.originalname);
-  },
-});
-
-const fileFilter = (req, file, cb) => {
-  // Accept only images
-  if (file.mimetype.startsWith('image/')) {
-    cb(null, true);
-  } else {
-    cb(null, false);
-  }
-};
-
-const upload = multer({
-  storage: storage,
-  limits: {
-    fileSize: 1024 * 1024 * 5, // Allow images of up to 5MB
-  },
-  fileFilter: fileFilter,
-});
+app.use('/', uploadRouter);
+// app.use('/images', express.static('images'));
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 mongoose
   .connect('mongodb+srv://ishmael:dostojevski@cluster0.oqgfe.mongodb.net/', {
