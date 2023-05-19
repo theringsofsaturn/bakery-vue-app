@@ -38,13 +38,19 @@ Luana & Maria's Bakery is a web application that allows users to browse and purc
 To run Luana & Maria's Bakery locally, follow these steps:
 
 1. Clone the repository:
-   `git clone https://github.com/your-username/luana-maria-bakery.git`
+   ```
+   git clone https://github.com/your-username/luana-maria-bakery.git
+   ```
 
 2. Navigate to the project directory:
-   `cd luana-maria-bakery`
+   ```
+   cd luana-maria-bakery
+   ```
 
 3. Install the dependencies:
-   `npm install`
+   ```
+   npm install
+   ```
 
 4. Set up the backend:
 
