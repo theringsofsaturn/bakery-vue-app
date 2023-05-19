@@ -57,6 +57,12 @@
                       label="Quantity"
                     ></v-text-field>
                   </v-col>
+                  <v-col cols="12">
+                    <v-text-field
+                      v-model="editedItem.description"
+                      label="Description"
+                    ></v-text-field>
+                  </v-col>
                 </v-row>
               </v-container>
             </v-card-text>
@@ -82,7 +88,7 @@ export default {
   data: () => ({
     dialog: false,
     headers: [
-      { text: 'Product ID', value: 'id' },
+      { text: 'Product ID', value: '_id' },
       { text: 'Product Name', value: 'name' },
       { text: 'Price', value: 'price' },
       { text: 'Available Quantity', value: 'quantity' },
@@ -96,12 +102,14 @@ export default {
       name: '',
       price: 0,
       quantity: 0,
+      description: '',
     },
     defaultItem: {
       id: '',
       name: '',
       price: 0,
       quantity: 0,
+      description: '',
     },
   }),
 
@@ -128,7 +136,7 @@ export default {
       const index = this.displayProducts.indexOf(item);
       if (confirm('Are you sure you want to delete this item?')) {
         axios
-          .delete(`http://localhost:3000/products/${item.id}`)
+          .delete(`http://localhost:3000/products/${item._id}`)
           .then((response) => {
             if (response.status === 200) {
               this.displayProducts.splice(index, 1);
@@ -142,28 +150,29 @@ export default {
       if (this.editedIndex > -1) {
         axios
           .put(
-            `http://localhost:3000/products/${this.editedItem.id}`,
+            `http://localhost:3000/products/${this.editedItem._id}`,
             this.editedItem
           )
           .then((response) => {
-            if (response.status === 200) {
-              Object.assign(
-                this.displayProducts[this.editedIndex],
-                this.editedItem
-              );
-              this.close();
-            }
+            Object.assign(
+              this.displayProducts[this.editedIndex],
+              response.data
+            );
+            this.close();
           })
           .catch((error) => console.error(error));
       } else {
+        let product = {
+          name: this.editedItem.name,
+          price: parseFloat(this.editedItem.price),
+          quantity: parseInt(this.editedItem.quantity),
+          description: this.editedItem.description,
+        };
         axios
-          .post('http://localhost:3000/products', this.editedItem)
+          .post('http://localhost:3000/products', product)
           .then((response) => {
-            if (response.status === 201) {
-              this.editedItem.id = response.data.id;
-              this.displayProducts.push(this.editedItem);
-              this.close();
-            }
+            this.displayProducts.push(response.data);
+            this.close();
           })
           .catch((error) => console.error(error));
       }

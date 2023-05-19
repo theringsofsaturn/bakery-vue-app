@@ -13,7 +13,7 @@ authRouter.post('/register', async (req, res) => {
     await user.save();
 
     const payload = { userId: user._id };
-    const token = jwt.sign(payload, 'secretKey', { expiresIn: '1h' });
+    const token = jwt.sign(payload, 'secretKey', { expiresIn: '30 days' });
 
     res.status(200).send({ token });
   } catch (error) {

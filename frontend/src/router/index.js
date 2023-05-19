@@ -57,7 +57,7 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some((record) => record.meta.requiresAuth)) {
     // This route requires auth, check if the user is logged in
     // For now, let's just use a simple flag in local storage
-    if (!localStorage.getItem('loggedIn')) {
+    if (!localStorage.getItem('token')) {
       // User is not logged in, redirect to login page
       next({
         path: '/login',
