@@ -63,6 +63,16 @@
                       label="Description"
                     ></v-text-field>
                   </v-col>
+                  <v-col cols="12">
+                    <v-file-input
+                      v-model="editedItem.image"
+                      :clearable="true"
+                      label="Upload Image"
+                      prepend-icon=""
+                      accept="image/*"
+                      placeholder="Select an image"
+                    ></v-file-input>
+                  </v-col>
                 </v-row>
               </v-container>
             </v-card-text>
@@ -103,6 +113,7 @@ export default {
       price: 0,
       quantity: 0,
       description: '',
+      image: null,
     },
     defaultItem: {
       id: '',
@@ -147,11 +158,23 @@ export default {
     },
 
     save() {
+      let formData = new FormData();
+      formData.append('name', this.editedItem.name);
+      formData.append('price', this.editedItem.price);
+      formData.append('quantity', this.editedItem.quantity);
+      formData.append('description', this.editedItem.description);
+      formData.append('image', this.editedItem.image);
+
       if (this.editedIndex > -1) {
         axios
           .put(
             `http://localhost:3000/products/${this.editedItem._id}`,
-            this.editedItem
+            formData,
+            {
+              headers: {
+                'Content-Type': 'multipart/form-data',
+              },
+            }
           )
           .then((response) => {
             Object.assign(
@@ -162,14 +185,12 @@ export default {
           })
           .catch((error) => console.error(error));
       } else {
-        let product = {
-          name: this.editedItem.name,
-          price: parseFloat(this.editedItem.price),
-          quantity: parseInt(this.editedItem.quantity),
-          description: this.editedItem.description,
-        };
         axios
-          .post('http://localhost:3000/products', product)
+          .post('http://localhost:3000/products', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          })
           .then((response) => {
             this.displayProducts.push(response.data);
             this.close();
