@@ -27,14 +27,26 @@
               ></v-img>
             </div>
             <v-card-title>{{ product.name }}</v-card-title>
-            <v-card-subtitle>Price: ${{ product.price }}</v-card-subtitle>
-            <v-card-subtitle
+            <v-card-subtitle class="subtitles"
+              >Quantity: ${{ product.quantity }}</v-card-subtitle
+            >
+            <v-card-subtitle class="subtitles"
+              >Price: ${{ product.price }}</v-card-subtitle
+            >
+            <v-card-subtitle class="discount-price subtitles"
               >Discount Price: ${{ product.discountPrice }}</v-card-subtitle
             >
-            <v-card-subtitle>Expires: {{ product.expires }}</v-card-subtitle>
-            <v-btn @click="viewDetails(product)" class="details-btn"
-              >View Details</v-btn
+            <v-card-subtitle class="expires subtitles"
+              >Expires: {{ product.expires }}</v-card-subtitle
             >
+            <div
+              class="details-btn"
+              @click="viewDetails(product)"
+              role="button"
+              tabindex="0"
+            >
+              View Details
+            </div>
           </v-card>
         </v-col>
       </v-row>
@@ -93,3 +105,42 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.expires {
+  font-weight: bold !important;
+  color: red !important;
+}
+
+.discount-price {
+  color: green !important;
+}
+
+.subtitles {
+  font-weight: bold !important;
+  padding: 4px;
+  margin-left: 12px;
+}
+
+.details-btn {
+  display: inline-block;
+  background: linear-gradient(to right, #1a2a6c, #b21f1f, #fdbb2d);
+  width: 100px;
+  height: 40px;
+  line-height: 40px; /* vertically center the text */
+  border-radius: 20px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  padding: 4px;
+  margin: 12px;
+  cursor: pointer;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+}
+
+.details-btn:hover {
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+  transform: scale(1.05);
+}
+</style>

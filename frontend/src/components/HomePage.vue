@@ -3,7 +3,9 @@
     <v-container fluid>
       <v-row>
         <v-col>
-          <h1>Welcome to Luana & Maria's Bakery - Your sweetest destination!</h1>
+          <h1>
+            Welcome to Luana & Maria's Bakery - Your sweetest destination!
+          </h1>
         </v-col>
       </v-row>
 
@@ -29,9 +31,18 @@
                     style="width: 100%"
                   >
                     <v-card-title>{{ offer.name }}</v-card-title>
-                    <v-card-subtitle>Price: ${{ offer.price }}</v-card-subtitle>
-                    <v-card-subtitle>Discount Price: ${{ offer.discountPrice }}</v-card-subtitle>
-                    <v-card-subtitle>Expires: {{ offer.expires }}</v-card-subtitle>
+                    <v-card-subtitle class="subtitles"
+                      >Quantity: ${{ offer.quantity }}</v-card-subtitle
+                    >
+                    <v-card-subtitle class="subtitles">Price: ${{ offer.price }}</v-card-subtitle>
+                    <v-card-subtitle class="discount-price subtitles"
+                      >Discount Price: ${{
+                        offer.discountPrice
+                      }}</v-card-subtitle
+                    >
+                    <v-card-subtitle class="expires subtitles"
+                      >Expires: {{ offer.expires }}</v-card-subtitle
+                    >
                   </v-card>
                 </v-row>
               </v-carousel-item>
@@ -63,9 +74,16 @@
                   ></v-img>
                 </div>
                 <v-card-title>{{ item.name }}</v-card-title>
-                <v-card-subtitle>Price: ${{ item.price }}</v-card-subtitle>
-                <v-card-subtitle>Discount Price: ${{ item.discountPrice }}</v-card-subtitle>
-                <v-card-subtitle>Expires: {{ item.expires }}</v-card-subtitle>
+                <v-card-subtitle class="subtitles"
+                  >Quantity: ${{ item.quantity }}</v-card-subtitle
+                >
+                <v-card-subtitle class="subtitles" >Price: ${{ item.price }}</v-card-subtitle>
+                <v-card-subtitle class="discount-price subtitles"
+                  >Discount Price: ${{ item.discountPrice }}</v-card-subtitle
+                >
+                <v-card-subtitle class="expires subtitles"
+                  >Expires: {{ item.expires }}</v-card-subtitle
+                >
               </v-card>
             </v-col>
           </v-row>
@@ -134,3 +152,20 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.expires {
+  font-weight: bold !important;
+  color: red !important;
+}
+
+.discount-price {
+  color: green !important;
+}
+
+.subtitles {
+  font-weight: bold !important;
+  padding: 4px;
+  margin-left: 12px;
+}
+</style>
