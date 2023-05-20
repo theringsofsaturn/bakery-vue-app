@@ -15,7 +15,7 @@
               New Item
             </v-btn>
           </template>
-          <v-card>
+          <v-card class="pa-3 elevation-12 dialog-v-card">
             <v-card-title>
               <span class="headline">{{
                 editedIndex === -1 ? 'New Item' : 'Edit Item'
@@ -117,10 +117,27 @@
             {{ calculatePrice(item) }}
           </template>
           <template v-slot:item.actions="{ item }">
-            <v-icon small class="mr-2" @click="editItem(item)"
-              >mdi-pencil</v-icon
-            >
-            <v-icon small @click="deleteItem(item)">mdi-delete</v-icon>
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on, attrs }">
+                <v-icon
+                  small
+                  class="mr-2"
+                  v-bind="attrs"
+                  @click="editItem(item)"
+                  v-on="on"
+                  >mdi-pencil</v-icon
+                >
+              </template>
+              <span>Edit Item</span>
+            </v-tooltip>
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on, attrs }">
+                <v-icon small v-bind="attrs" @click="deleteItem(item)" v-on="on"
+                  >mdi-delete</v-icon
+                >
+              </template>
+              <span>Delete Item</span>
+            </v-tooltip>
           </template>
         </v-data-table>
       </v-container>
@@ -254,7 +271,7 @@ export default {
     },
 
     addIngredient() {
-      this.editedItem.ingredients.push({ name: '', quantity: 0, unit: '' });
+      this.editedItem.ingredients.push({ name: '', quantity: null, unit: '' });
     },
 
     removeIngredient(index) {
@@ -293,3 +310,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.rounded-lg {
+  border-radius: 1rem;
+}
+</style>
