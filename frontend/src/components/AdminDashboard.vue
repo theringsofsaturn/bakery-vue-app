@@ -3,21 +3,6 @@
   <v-app>
     <v-main>
       <v-container>
-        <v-data-table
-          :headers="headers"
-          :items="displayProducts"
-          class="elevation-1"
-        >
-          <template v-slot:item.price="{ item }">
-            {{ calculatePrice(item) }}
-          </template>
-          <template v-slot:item.actions="{ item }">
-            <v-icon small class="mr-2" @click="editItem(item)"
-              >mdi-pencil</v-icon
-            >
-            <v-icon small @click="deleteItem(item)">mdi-delete</v-icon>
-          </template>
-        </v-data-table>
         <v-dialog v-model="dialog" max-width="500px">
           <template v-slot:activator="{ on, attrs }">
             <v-btn
@@ -116,6 +101,21 @@
             </v-card-actions>
           </v-card>
         </v-dialog>
+        <v-data-table
+          :headers="headers"
+          :items="displayProducts"
+          class="elevation-1"
+        >
+          <template v-slot:item.price="{ item }">
+            {{ calculatePrice(item) }}
+          </template>
+          <template v-slot:item.actions="{ item }">
+            <v-icon small class="mr-2" @click="editItem(item)"
+              >mdi-pencil</v-icon
+            >
+            <v-icon small @click="deleteItem(item)">mdi-delete</v-icon>
+          </template>
+        </v-data-table>
       </v-container>
     </v-main>
   </v-app>

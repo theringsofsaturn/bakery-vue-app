@@ -29,9 +29,11 @@ productRouter.post('/products', async (req, res) => {
     console.log('Request body:', req.body);
 
     const newProduct = new Product({
-      ...req.body,
+      name: req.body.name,
+      price: req.body.price,
+      quantity: req.body.quantity,
       imageUrl: req.body.imageUrl || null,
-      ingredients: req.body.ingredients ? JSON.parse(req.body.ingredients) : [],
+      ingredients: req.body.ingredients || [],
     });
 
     const savedProduct = await newProduct.save();
