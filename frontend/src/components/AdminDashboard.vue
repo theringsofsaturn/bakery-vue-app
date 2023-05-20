@@ -24,6 +24,11 @@
             <v-card-text>
               <v-container>
                 <v-row>
+                  <v-col>
+                    <v-header>Product</v-header>
+                  </v-col>
+                </v-row>
+                <v-row>
                   <v-col cols="12" sm="6" md="4">
                     <v-text-field
                       v-model="editedItem.name"
@@ -57,40 +62,42 @@
                       placeholder="Select a product image"
                     ></v-file-input>
                   </v-col>
-                  <v-row
-                    v-for="(ingredient, index) in editedItem.ingredients"
-                    :key="index"
-                  >
-                    <v-col cols="12" sm="4">
-                      <v-text-field
-                        v-model="ingredient.name"
-                        label="Ingredient Name"
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="4">
-                      <v-text-field
-                        v-model="ingredient.quantity"
-                        label="Ingredient Quantity"
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="3">
-                      <v-text-field
-                        v-model="ingredient.unit"
-                        label="Ingredient Unit"
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="1">
-                      <v-btn small @click="removeIngredient(index)"
-                        >Remove</v-btn
-                      >
-                    </v-col>
-                  </v-row>
-
-                  <v-row>
-                    <v-col cols="12">
-                      <v-btn small @click="addIngredient">Add Ingredient</v-btn>
-                    </v-col>
-                  </v-row>
+                </v-row>
+                <v-row>
+                  <v-col>
+                    <v-header>Ingredients</v-header>
+                  </v-col>
+                </v-row>
+                <v-row
+                  v-for="(ingredient, index) in editedItem.ingredients"
+                  :key="index"
+                >
+                  <v-col cols="12" sm="3">
+                    <v-text-field
+                      v-model="ingredient.name"
+                      label="Name"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="3">
+                    <v-text-field
+                      v-model="ingredient.quantity"
+                      label="Quantity"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="3">
+                    <v-text-field
+                      v-model="ingredient.unit"
+                      label="Unit"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="1" class="align-self-center">
+                    <v-btn small @click="removeIngredient(index)">Remove</v-btn>
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col cols="12">
+                    <v-btn small @click="addIngredient">Add Ingredient</v-btn>
+                  </v-col>
                 </v-row>
               </v-container>
             </v-card-text>
@@ -143,20 +150,20 @@ export default {
     editedItem: {
       id: '',
       name: '',
-      price: 0,
-      quantity: 0,
+      price: null,
+      quantity: null,
       description: '',
       image: null,
-      ingredients: [{ name: '', quantity: 0, unit: '' }],
+      ingredients: [{ name: '', quantity: null, unit: '' }],
     },
     defaultItem: {
       id: '',
       name: '',
-      price: 0,
-      quantity: 0,
+      price: null,
+      quantity: null,
       description: '',
       image: null,
-      ingredients: [{ name: '', quantity: 0, unit: '' }],
+      ingredients: [{ name: '', quantity: null, unit: '' }],
     },
   }),
 
