@@ -164,6 +164,9 @@ export default {
     getProducts() {
       axios.get('http://localhost:3000/products').then((response) => {
         this.products = response.data;
+        this.products.sort(
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+        );
         this.displayProducts = [...this.products];
       });
     },
@@ -236,7 +239,7 @@ export default {
             );
           })
           .then((response) => {
-            this.displayProducts.push(response.data);
+            this.displayProducts.unshift(response.data);
             this.close();
           })
           .catch((error) => console.error(error));

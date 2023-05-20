@@ -69,11 +69,13 @@ export default {
     axios
       .get('http://localhost:3000/products')
       .then((response) => {
-        this.productList = response.data.map((product) => ({
-          ...product,
-          discountPrice: this.calculatePrice(product),
-          expires: this.calculateExpiration(product),
-        }));
+        this.productList = response.data
+          .map((product) => ({
+            ...product,
+            discountPrice: this.calculatePrice(product),
+            expires: this.calculateExpiration(product),
+          }))
+          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
       })
       .catch((error) => {
         console.log(error);
