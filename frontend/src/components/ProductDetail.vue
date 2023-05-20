@@ -11,7 +11,19 @@
             class="align-center pa-2"
           ></v-img>
           <v-card-title class="headline">{{ product.name }}</v-card-title>
-          <v-card-subtitle>{{ product.description }}</v-card-subtitle>
+          <v-card-text>
+            <h3>Ingredients:</h3>
+            <ul>
+              <li
+                v-for="ingredient in product.ingredients"
+                :key="ingredient.name"
+              >
+                {{ ingredient.name }} - {{ ingredient.quantity }}
+                {{ ingredient.unit }}
+              </li>
+            </ul>
+          </v-card-text>
+
           <v-card-text>
             <div class="title">Price: ${{ product.price }}</div>
             <div class="subtitle">

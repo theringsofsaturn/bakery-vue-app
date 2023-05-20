@@ -72,6 +72,40 @@
                       placeholder="Select a product image"
                     ></v-file-input>
                   </v-col>
+                  <v-row
+                    v-for="(ingredient, index) in editedItem.ingredients"
+                    :key="index"
+                  >
+                    <v-col cols="12" sm="4">
+                      <v-text-field
+                        v-model="ingredient.name"
+                        label="Ingredient Name"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="4">
+                      <v-text-field
+                        v-model="ingredient.quantity"
+                        label="Ingredient Quantity"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="3">
+                      <v-text-field
+                        v-model="ingredient.unit"
+                        label="Ingredient Unit"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="1">
+                      <v-btn small @click="removeIngredient(index)"
+                        >Remove</v-btn
+                      >
+                    </v-col>
+                  </v-row>
+
+                  <v-row>
+                    <v-col cols="12">
+                      <v-btn small @click="addIngredient">Add Ingredient</v-btn>
+                    </v-col>
+                  </v-row>
                 </v-row>
               </v-container>
             </v-card-text>
@@ -112,6 +146,8 @@ export default {
       price: 0,
       quantity: 0,
       description: '',
+      image: null,
+      ingredients: [{ name: '', quantity: 0, unit: '' }],
     },
     defaultItem: {
       id: '',
@@ -120,6 +156,7 @@ export default {
       quantity: 0,
       description: '',
       image: null,
+      ingredients: [{ name: '', quantity: 0, unit: '' }],
     },
   }),
 
@@ -181,6 +218,10 @@ export default {
         productData.append('price', this.editedItem.price);
         productData.append('quantity', this.editedItem.quantity);
         productData.append('description', this.editedItem.description);
+        productData.append(
+          'ingredients',
+          JSON.stringify(this.editedItem.ingredients)
+        );
         productData.append('file', this.editedItem.image);
 
         axios
@@ -202,11 +243,19 @@ export default {
       }
     },
 
+    addIngredient() {
+      this.editedItem.ingredients.push({ name: '', quantity: 0, unit: '' });
+    },
+
+    removeIngredient(index) {
+      this.editedItem.ingredients.splice(index, 1);
+    },
+
     close() {
       this.dialog = false;
       setTimeout(() => {
         this.editedItem = Object.assign({}, this.defaultItem);
-        this.editedItem.image = null; // Clear the file input when closing the dialog.
+        this.editedItem.image = null;
         this.editedIndex = -1;
       }, 300);
     },

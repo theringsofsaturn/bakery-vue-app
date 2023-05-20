@@ -30,9 +30,8 @@ productRouter.post('/products', async (req, res) => {
 
     const newProduct = new Product({
       ...req.body,
-      // imageUrl is taken directly from req.body
-      // req.file is not accessed because there is no file attached to this request
       imageUrl: req.body.imageUrl || null,
+      ingredients: req.body.ingredients ? JSON.parse(req.body.ingredients) : [],
     });
 
     const savedProduct = await newProduct.save();
