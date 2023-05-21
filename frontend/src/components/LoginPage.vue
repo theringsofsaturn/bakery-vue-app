@@ -61,6 +61,7 @@ export default {
           });
 
           localStorage.setItem('token', response.data.token);
+          this.$root.$emit('loginStatusChanged');
 
           let redirect = this.$route.query.redirect;
           if (redirect) {

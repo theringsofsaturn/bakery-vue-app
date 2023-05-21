@@ -4,8 +4,7 @@
       <v-img
         class="logo-img mx-2"
         contain
-        src="https://res.cloudinary.com/dqiyjy9ye/image/upload/v1683997190/random/Pink_Cute_Chef_Illustrated_Bakery_Logo_vvxhxo.png"
-        alt="Bakery logo"
+        src="https://res.cloudinary.com/dqiyjy9ye/image/upload/v1684631115/random/Brown_Simple_Illustrated_Dessert_Cafe_Logo_2_lqqg4r.png"
       ></v-img>
       <div class="logo-title">Luana & Maria's Bakery</div>
     </v-toolbar-title>
@@ -43,15 +42,29 @@ export default {
 
   data() {
     return {
-      isLoggedIn: false, // replace with real login status
-      isAdmin: false, // replace with real admin status
+      isLoggedIn: false,
+      isAdmin: false,
     };
   },
 
+  created() {
+    this.updateLoginStatus();
+    this.$root.$on('loginStatusChanged', this.updateLoginStatus);
+  },
+
+  beforeDestroy() {
+    this.$root.$off('loginStatusChanged', this.updateLoginStatus);
+  },
+
   methods: {
+    updateLoginStatus() {
+      this.isLoggedIn = !!localStorage.getItem('token');
+    },
+
     logout() {
       localStorage.removeItem('token');
       this.$router.push({ name: 'login' });
+      this.$root.$emit('loginStatusChanged');
     },
 
     goToLogin() {
