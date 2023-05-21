@@ -1,6 +1,6 @@
 <template>
   <v-container class="fill-height" fluid>
-    <v-row align="center" justify="center">
+    <v-row align="center" justify="center" class="full-height">
       <v-col cols="12" sm="8" md="6">
         <v-card v-if="product" class="mx-auto product-card" outlined>
           <v-img
@@ -85,3 +85,90 @@ export default {
   },
 };
 </script>
+<style scoped>
+.full-height {
+  min-height: calc(
+    100vh - 60px - 60px
+  ); 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.v-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 60px);
+  padding: 30px;
+  background-color: #fafafa;
+}
+
+.product-card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 10px;
+  transition: transform 0.2s;
+  cursor: pointer;
+  padding: 20px;
+  margin-bottom: 60px;
+}
+
+.product-card:hover {
+  transform: scale(1.03);
+}
+
+.v-img {
+  width: 100%; /* Full width of the card */
+  transition: transform 0.2s;
+}
+
+.v-img:hover {
+  transform: scale(1.1);
+}
+
+.v-card-title {
+  color: #8b4513;
+  font-family: 'Georgia', serif;
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.v-card-text {
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  padding-left: 20px;
+}
+
+.v-card-text h3 {
+  color: #8b4513;
+  font-size: 1.2em;
+}
+
+.v-card-text ul {
+  list-style: disc;
+}
+
+.title,
+.subtitle {
+  font-weight: bold;
+  padding: 10px 0;
+}
+
+.v-btn {
+  display: inline-block;
+  background: linear-gradient(to right, #1a2a6c, #b21f1f, #fdbb2d);
+  color: white;
+  font-weight: bold;
+  border-radius: 20px;
+  text-align: center;
+  padding: 4px 20px; /* Adjusted padding */
+  margin-top: 12px; /* Added margin */
+  cursor: pointer;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+}
+
+.v-btn:hover {
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+  transform: scale(1.05);
+}
+</style>
