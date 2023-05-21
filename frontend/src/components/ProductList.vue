@@ -109,6 +109,31 @@ export default {
 </script>
 
 <style scoped>
+h1 {
+  text-align: center;
+  color: #8b4513;
+  font-family: 'Georgia', serif;
+  margin-top: 30px;
+  font-size: 2.5em;
+}
+
+.v-card {
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.v-card:hover {
+  transform: scale(1.03);
+}
+
+.v-img {
+  transition: transform 0.2s;
+}
+
+.v-img:hover {
+  transform: scale(1.1);
+}
+
 .expires {
   font-weight: bold !important;
   color: red !important;
@@ -126,7 +151,7 @@ export default {
 
 .details-btn {
   display: inline-block;
-  background: linear-gradient(to right, #1a2a6c, #b21f1f, #fdbb2d);
+  background: #8b4513;
   width: 100px;
   height: 40px;
   line-height: 40px; /* vertically center the text */
@@ -137,8 +162,8 @@ export default {
   padding: 4px;
   margin: 12px;
   cursor: pointer;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
   transition: all 0.3s ease;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
 }
 
 .details-btn:hover {
