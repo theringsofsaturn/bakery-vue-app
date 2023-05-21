@@ -1,53 +1,49 @@
 <template>
-  <div class="product-detail-page">
-    <v-container fluid>
-      <v-row justify="center">
-        <v-col cols="12" sm="10" md="8" lg="6">
-          <v-card v-if="product" class="product-card" outlined>
-            <v-img
-              :src="'http://localhost:3000' + product.imageUrl"
-              :alt="product.name"
-              class="product-image"
-            ></v-img>
+  <v-container class="product-detail-container" fluid>
+    <v-row align="center" justify="center">
+      <v-col cols="12" sm="8" md="6" lg="6" xl="5">
+        <div class="product-image-container">
+          <v-img
+            :src="'http://localhost:3000' + product.imageUrl"
+            :alt="product.name"
+            class="product-image"
+            width="400"
+            height="300"
+          ></v-img>
+        </div>
+      </v-col>
 
-            <v-card-title class="headline text-center mt-3">{{
-              product.name
-            }}</v-card-title>
-
-            <v-card-text>
-              <div class="text-center">
-                <h3 class="mt-0 mb-2">Ingredients</h3>
-                <v-chip
-                  v-for="ingredient in product.ingredients"
-                  :key="ingredient.name"
-                  class="mx-1 my-1"
-                  color="secondary"
-                  text-color="white"
-                >
-                  {{ ingredient.name }} - {{ ingredient.quantity }}
-                  {{ ingredient.unit }}
-                </v-chip>
-              </div>
-            </v-card-text>
-
-            <v-card-actions class="justify-center">
-              <v-btn color="primary" @click="addToCart(product)"
-                >Add to Cart</v-btn
-              >
-            </v-card-actions>
-            <v-divider></v-divider>
-            <v-card-text class="text-center">
-              <div class="title">Price: ${{ product.price }}</div>
-              <div class="subtitle">
-                Discount Price: ${{ product.discountPrice }}
-              </div>
-              <div class="subtitle">Expires: {{ product.expires }}</div>
-            </v-card-text>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-container>
-  </div>
+      <v-col cols="12" sm="8" md="6" lg="6" xl="5">
+        <div class="product-info">
+          <h1 class="product-title">{{ product.name }}</h1>
+          <h3 class="ingredients-title">Ingredients:</h3>
+          <ul class="ingredients-list">
+            <li
+              class="ingredient-item"
+              v-for="ingredient in product.ingredients"
+              :key="ingredient.name"
+            >
+              <v-icon small class="mr-2">mdi-food-variant</v-icon>
+              {{ ingredient.name }} - {{ ingredient.quantity }}
+              {{ ingredient.unit }}
+            </li>
+          </ul>
+          <h2 class="product-price">Price: ${{ product.price }}</h2>
+          <h3 class="product-discount">
+            Discount Price: ${{ product.discountPrice }}
+          </h3>
+          <div class="product-expiration">Expires: {{ product.expires }}</div>
+          <p class="product-description">{{ product.description }}</p>
+          <v-btn
+            class="add-to-cart-btn"
+            color="primary"
+            @click="addToCart(product)"
+            >Add to Cart</v-btn
+          >
+        </div>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -95,63 +91,100 @@ export default {
 </script>
 
 <style scoped>
-.product-detail-page {
-  padding: 70px 0;
+.product-detail-container {
+  padding: 60px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: #fafafa;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Roboto', sans-serif;
 }
 
-.product-card {
-  transition: transform 0.2s;
-  padding: 20px;
-}
-
-.product-card:hover {
-  transform: scale(1.03);
+.product-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .product-image {
   width: 100%;
-  transition: transform 0.2s;
-  aspect-ratio: 16/9;
+  height: 100%;
   object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
 }
 
-.product-image:hover {
-  transform: scale(1.1);
-}
-
-.headline {
-  color: #8b4513;
-  font-family: 'Georgia', serif;
-  font-size: 1.5em;
-}
-
-.v-chip {
-  font-family: 'Arial', sans-serif;
-  color: #333;
-}
-
-.title,
-.subtitle {
-  font-weight: bold;
-  padding: 10px 0;
-}
-
-.v-btn {
-  display: inline-block;
-  background: linear-gradient(to right, #1a2a6c, #b21f1f, #fdbb2d);
-  color: white;
-  font-weight: bold;
-  border-radius: 20px;
+.product-info {
+  padding: 20px;
   text-align: center;
-  padding: 4px 20px;
-  margin-top: 12px;
-  cursor: pointer;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.product-title {
+  font-size: 2em;
+  color: #8b4513;
+  margin-bottom: 10px;
+}
+
+.product-price {
+  font-size: 1.6em;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.product-discount {
+  font-size: 1.3em;
+  color: #b21f1f;
+  margin-bottom: 10px;
+}
+
+.product-expiration {
+  font-size: 1.1em;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.product-description {
+  font-size: 1em;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.ingredients-title {
+  font-size: 1.5em;
+  color: #8b4513;
+  margin: 20px 0;
+}
+
+.ingredients-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.ingredient-item {
+  font-size: 1.2em;
+  color: #333;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.ingredient-item v-icon {
+  padding-right: 10px;
+}
+
+.add-to-cart-btn {
+  padding: 10px 20px;
+  font-size: 1em;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(to right, #1a2a6c, #b21f1f, #fdbb2d);
+  border-radius: 50px;
   transition: all 0.3s ease;
 }
 
-.v-btn:hover {
-  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+.add-to-cart-btn:hover {
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
   transform: scale(1.05);
 }
 </style>
