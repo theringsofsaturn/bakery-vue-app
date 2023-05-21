@@ -4,7 +4,7 @@
       <v-row>
         <v-col>
           <h1>
-            Welcome to Luana & Maria's Bakery - Your sweetest destination!
+            Welcome to Luana & Maria's Bakery <br> Your sweetest destination!
           </h1>
         </v-col>
       </v-row>
@@ -25,6 +25,7 @@
                   justify="start"
                 >
                   <v-card
+                    @click="navigateToItem(offer)"
                     color="rgba(0, 0, 0, 0.6)"
                     dark
                     class="justify-end"
@@ -34,7 +35,9 @@
                     <v-card-subtitle class="subtitles"
                       >Quantity: ${{ offer.quantity }}</v-card-subtitle
                     >
-                    <v-card-subtitle class="subtitles">Price: ${{ offer.price }}</v-card-subtitle>
+                    <v-card-subtitle class="subtitles"
+                      >Price: ${{ offer.price }}</v-card-subtitle
+                    >
                     <v-card-subtitle class="discount-price subtitles"
                       >Discount Price: ${{
                         offer.discountPrice
@@ -63,7 +66,7 @@
               v-for="(item, index) in popularItems"
               :key="index"
             >
-              <v-card>
+              <v-card @click="navigateToItem(item)">
                 <div class="d-flex justify-center">
                   <v-img
                     :src="'http://localhost:3000' + item.imageUrl"
@@ -77,7 +80,9 @@
                 <v-card-subtitle class="subtitles"
                   >Quantity: ${{ item.quantity }}</v-card-subtitle
                 >
-                <v-card-subtitle class="subtitles" >Price: ${{ item.price }}</v-card-subtitle>
+                <v-card-subtitle class="subtitles"
+                  >Price: ${{ item.price }}</v-card-subtitle
+                >
                 <v-card-subtitle class="discount-price subtitles"
                   >Discount Price: ${{ item.discountPrice }}</v-card-subtitle
                 >
@@ -149,6 +154,10 @@ export default {
       const expirationDate = moment(product.created_at).add(3, 'days');
       return expirationDate.format('YYYY-MM-DD');
     },
+
+    navigateToItem(item) {
+      this.$router.push({ name: 'product-detail', params: { id: item._id } });
+    },
   },
 };
 </script>
@@ -167,5 +176,60 @@ export default {
   font-weight: bold !important;
   padding: 4px;
   margin-left: 12px;
+}
+
+h1,
+h2 {
+  text-align: center;
+  color: #8b4513;
+  font-family: 'Georgia', serif;
+  margin-top: 30px;
+}
+
+h1 {
+  font-size: 2.5em;
+}
+
+h2 {
+  font-size: 2em;
+  margin-bottom: 30px;
+}
+
+.v-card {
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.v-card:hover {
+  transform: scale(1.03);
+}
+
+.v-img {
+  transition: transform 0.2s;
+}
+
+.v-img:hover {
+  transform: scale(1.1);
+}
+
+.expires {
+  font-weight: bold !important;
+  color: red !important;
+}
+
+.discount-price {
+  color: green !important;
+}
+
+.subtitles {
+  font-weight: bold !important;
+  padding: 4px;
+  margin-left: 12px;
+}
+
+.v-carousel-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
