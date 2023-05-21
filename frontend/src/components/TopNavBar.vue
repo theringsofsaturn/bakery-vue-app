@@ -93,8 +93,8 @@ export default {
 }
 
 .logo-img {
-  height: 50px;
-  width: 50px;
+  height: 60px;
+  width: 60px;
 }
 
 .logo-title {
