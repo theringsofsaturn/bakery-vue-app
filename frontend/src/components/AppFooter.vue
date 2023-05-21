@@ -1,5 +1,6 @@
+<!-- Footer -->
 <template>
-  <v-footer color="pink accent-3" app>
+  <v-footer color="gradient" app>
     <v-container fluid text-xs-center>
       <v-row align="center">
         <v-col xs="12">
@@ -46,3 +47,9 @@ export default {
   name: 'AppFooter',
 };
 </script>
+
+<style>
+.gradient {
+  background: linear-gradient(to right, #f5deb3, #8b4513);
+}
+</style>
