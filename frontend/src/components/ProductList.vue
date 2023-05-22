@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-use-v-if-with-v-for -->
 <template>
   <v-main>
     <v-container fluid>
@@ -15,6 +16,7 @@
           lg="3"
           v-for="(product, index) in productList"
           :key="index"
+          v-if="product.available"
         >
           <v-card>
             <div class="d-flex justify-center">
@@ -30,12 +32,20 @@
             <v-card-subtitle class="subtitles"
               >Quantity: ${{ product.quantity }}</v-card-subtitle
             >
-            <v-card-subtitle class="subtitles"
-              >Price: ${{ product.price }}</v-card-subtitle
+            <v-card-subtitle class="subtitles">
+              Price: ${{ product.originalPrice }}
+            </v-card-subtitle>
+            <v-card-subtitle class="final-price subtitles"
+              >Discount: ${{ product.discounted.toFixed(2) }}</v-card-subtitle
             >
-            <v-card-subtitle class="discount-price subtitles"
-              >Discount Price: ${{ product.discountPrice }}</v-card-subtitle
+            <v-card-subtitle
+              class="discount-price subtitles"
+              v-if="product.discountRate !== 0"
             >
+              Final Price: ${{ product.finalPrice.toFixed(2) }} ({{
+                product.discountRate
+              }}% off)
+            </v-card-subtitle>
             <v-card-subtitle class="expires subtitles"
               >Expires: {{ product.expires }}</v-card-subtitle
             >
@@ -65,155 +75,69 @@ export default {
       productList: [],
     };
   },
+
   created() {
     axios
       .get('http://localhost:3000/products')
       .then((response) => {
         this.productList = response.data
-          .map((product) => ({
-            ...product,
-            discountPrice: this.calculatePrice(product),
-            expires: this.calculateExpiration(product),
-          }))
+          .map((product) => {
+            const calculatedProduct = this.calculatePrice(product);
+            return {
+              ...product,
+              ...calculatedProduct,
+              expires: this.calculateExpiration(product),
+            };
+          })
           .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
       })
       .catch((error) => {
         console.log(error);
       });
   },
+
   methods: {
     calculatePrice(product) {
-      const daysPassed = moment().diff(moment(product.created_at), 'days');
+      const daysPassed = moment()
+        .startOf('day')
+        .diff(moment(product.createdAt).startOf('day'), 'days');
+      let finalPrice = 0;
+      let available = true;
+      let discountRate = 0;
+
       if (daysPassed === 0) {
-        return product.price;
+        finalPrice = 0;
+        discountRate = 0;
       } else if (daysPassed === 1) {
-        return product.price * 0.8;
+        finalPrice = product.price * 0.2;
+        discountRate = 20;
       } else if (daysPassed === 2) {
-        return product.price * 0.2;
+        finalPrice = product.price * 0.8;
+        discountRate = 80;
+      } else if (daysPassed === 3) {
+        finalPrice = product.price * 0.9;
+        discountRate = 90;
+      } else if (daysPassed > 3) {
+        finalPrice = product.price * 0.95;
+        discountRate = 95;
       } else {
-        return 0;
+        finalPrice = product.price;
+        available = false;
       }
+
+      let discounted = product.price - finalPrice;
+
+      return {
+        originalPrice: product.price,
+        finalPrice: finalPrice,
+        discounted: discounted,
+        available,
+        discountRate,
+      };
     },
+
     calculateExpiration(product) {
-      const expirationDate = moment(product.created_at).add(3, 'days');
-      return expirationDate.format('YYYY-MM-DD');
-    },
-    viewDetails(product) {
-      this.$router.push({
-        name: 'product-detail',
-        params: { id: product._id },
-      });
-    },
-  },
-};
-</script>
-
-<style scoped>
-h1 {
-  text-align: center;
-  color: #8b4513;
-  font-family: 'Georgia', serif;
-  margin-top: 30px;
-  font-size: 2.5em;
-}
-
-.v-card {
-  transition: transform 0.2s;
-  cursor: pointer;
-}
-
-.v-card:hover {
-  transform: scale(1.03);
-}
-
-.v-img {
-  transition: transform 0.2s;
-}
-
-.v-img:hover {
-  transform: scale(1.1);
-}
-
-.expires {
-  font-weight: bold !important;
-  color: red !important;
-}
-
-.discount-price {
-  color: green !important;
-}
-
-.subtitles {
-  font-weight: bold !important;
-  padding: 4px;
-  margin-left: 12px;
-}
-
-.details-btn {
-  display: inline-block;
-  background: #8b4513;
-  width: 100px;
-  height: 40px;
-  line-height: 40px; /* vertically center the text */
-  border-radius: 20px;
-  color: white;
-  font-weight: bold;
-  text-align: center;
-  padding: 4px;
-  margin: 12px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
-}
-
-.details-btn:hover {
-  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
-  transform: scale(1.05);
-}
-</style>
-
-<script>
-import axios from 'axios';
-import moment from 'moment';
-
-export default {
-  name: 'ProductList',
-  data() {
-    return {
-      productList: [],
-    };
-  },
-  created() {
-    axios
-      .get('http://localhost:3000/products')
-      .then((response) => {
-        this.productList = response.data
-          .map((product) => ({
-            ...product,
-            discountPrice: this.calculatePrice(product),
-            expires: this.calculateExpiration(product),
-          }))
-          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  },
-  methods: {
-    calculatePrice(product) {
-      const daysPassed = moment().diff(moment(product.created_at), 'days');
-      if (daysPassed === 0) {
-        return product.price;
-      } else if (daysPassed === 1) {
-        return product.price * 0.8;
-      } else if (daysPassed === 2) {
-        return product.price * 0.2;
-      } else {
-        return 0;
-      }
-    },
-    calculateExpiration(product) {
-      const expirationDate = moment(product.created_at).add(3, 'days');
+      const expirationDate = moment(product.created_at).add(7, 'days');
       return expirationDate.format('YYYY-MM-DD');
     },
     viewDetails(product) {

@@ -300,7 +300,9 @@ export default {
   computed: {
     calculatePrice() {
       return (product) => {
-        const daysPassed = moment().diff(moment(product.created_at), 'days');
+        const daysPassed = moment()
+          .startOf('day')
+          .diff(moment(product.created_at).startOf('day'), 'days');
         if (daysPassed === 0) {
           return product.price;
         } else if (daysPassed === 1) {

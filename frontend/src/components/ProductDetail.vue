@@ -28,9 +28,14 @@
               {{ ingredient.unit }}
             </li>
           </ul>
-          <h2 class="product-price">Price: ${{ product.price }}</h2>
-          <h3 class="product-discount">
-            Discount Price: ${{ product.discountPrice }}
+          <h2 class="product-price">Price: ${{ product.originalPrice }}</h2>
+          <h3 class="product-discount-amount">
+            Discount: ${{ product.discounted.toFixed(2) }}
+          </h3>
+          <h3 class="product-discount" v-if="product.discountRate !== 0">
+            Final Price: ${{ product.finalPrice.toFixed(2) }} ({{
+              product.discountRate
+            }}% off)
           </h3>
           <div class="product-expiration">Expires: {{ product.expires }}</div>
           <p class="product-description">{{ product.description }}</p>
@@ -56,34 +61,64 @@ export default {
       product: null,
     };
   },
+
   async created() {
     const id = this.$route.params.id;
     try {
       const response = await axios.get(`http://localhost:3000/products/${id}`);
+      const calculatedProduct = this.calculatePrice(response.data);
       this.product = {
         ...response.data,
-        discountPrice: this.calculatePrice(response.data),
+        ...calculatedProduct,
         expires: this.calculateExpiration(response.data),
       };
     } catch (error) {
       console.error(error);
     }
   },
+
   methods: {
     calculatePrice(product) {
-      const daysPassed = moment().diff(moment(product.created_at), 'days');
+      const daysPassed = moment()
+        .startOf('day')
+        .diff(moment(product.createdAt).startOf('day'), 'days');
+      let finalPrice = 0;
+      let available = true;
+      let discountRate = 0;
+
       if (daysPassed === 0) {
-        return product.price;
+        finalPrice = 0;
+        discountRate = 0;
       } else if (daysPassed === 1) {
-        return product.price * 0.8;
+        finalPrice = product.price * 0.2;
+        discountRate = 20;
       } else if (daysPassed === 2) {
-        return product.price * 0.2;
+        finalPrice = product.price * 0.8;
+        discountRate = 80;
+      } else if (daysPassed === 3) {
+        finalPrice = product.price * 0.9;
+        discountRate = 90;
+      } else if (daysPassed > 3) {
+        finalPrice = product.price * 0.95;
+        discountRate = 95;
       } else {
-        return 0;
+        finalPrice = product.price;
+        available = false;
       }
+
+      let discounted = product.price - finalPrice;
+
+      return {
+        originalPrice: product.price,
+        finalPrice: finalPrice,
+        discounted: discounted,
+        available,
+        discountRate,
+      };
     },
+
     calculateExpiration(product) {
-      const expirationDate = moment(product.created_at).add(3, 'days');
+      const expirationDate = moment(product.created_at).add(7, 'days');
       return expirationDate.format('YYYY-MM-DD');
     },
   },

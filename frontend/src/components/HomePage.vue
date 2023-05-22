@@ -4,7 +4,8 @@
       <v-row>
         <v-col>
           <h1>
-            Welcome to Luana & Maria's Bakery <br> Your sweetest destination!
+            Welcome to Luana & Maria's Bakery <br />
+            Your sweetest destination!
           </h1>
         </v-col>
       </v-row>
@@ -38,11 +39,19 @@
                     <v-card-subtitle class="subtitles"
                       >Price: ${{ offer.price }}</v-card-subtitle
                     >
-                    <v-card-subtitle class="discount-price subtitles"
-                      >Discount Price: ${{
-                        offer.discountPrice
+                    <v-card-subtitle class="final-price subtitles"
+                      >Discount: ${{
+                        offer.discounted.toFixed(2)
                       }}</v-card-subtitle
                     >
+                    <v-card-subtitle
+                      class="discount-price subtitles"
+                      v-if="offer.discountRate !== 0"
+                    >
+                      Final Price: ${{ offer.finalPrice.toFixed(2) }} ({{
+                        offer.discountRate
+                      }}% off)
+                    </v-card-subtitle>
                     <v-card-subtitle class="expires subtitles"
                       >Expires: {{ offer.expires }}</v-card-subtitle
                     >
@@ -81,11 +90,19 @@
                   >Quantity: ${{ item.quantity }}</v-card-subtitle
                 >
                 <v-card-subtitle class="subtitles"
-                  >Price: ${{ item.price }}</v-card-subtitle
+                  >Price: ${{ item.originalPrice }}</v-card-subtitle
                 >
-                <v-card-subtitle class="discount-price subtitles"
-                  >Discount Price: ${{ item.discountPrice }}</v-card-subtitle
+                <v-card-subtitle class="final-price subtitles"
+                  >Discount: ${{ item.discounted.toFixed(2) }}</v-card-subtitle
                 >
+                <v-card-subtitle
+                  class="discount-price subtitles"
+                  v-if="item.discountRate !== 0"
+                >
+                  Final Price: ${{ item.finalPrice.toFixed(2) }} ({{
+                    item.discountRate
+                  }}% off)
+                </v-card-subtitle>
                 <v-card-subtitle class="expires subtitles"
                   >Expires: {{ item.expires }}</v-card-subtitle
                 >
@@ -114,11 +131,14 @@ export default {
     axios
       .get('http://localhost:3000/products?specialOffer=true')
       .then((response) => {
-        this.specialOffers = response.data.map((offer) => ({
-          ...offer,
-          discountPrice: this.calculatePrice(offer),
-          expires: this.calculateExpiration(offer),
-        }));
+        this.specialOffers = response.data.map((offer) => {
+          const calculatedOffer = this.calculatePrice(offer);
+          return {
+            ...offer,
+            ...calculatedOffer,
+            expires: this.calculateExpiration(offer),
+          };
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -127,29 +147,60 @@ export default {
     axios
       .get('http://localhost:3000/products?popularItem=true')
       .then((response) => {
-        this.popularItems = response.data.map((item) => ({
-          ...item,
-          discountPrice: this.calculatePrice(item),
-          expires: this.calculateExpiration(item),
-        }));
+        this.popularItems = response.data.map((item) => {
+          const calculatedItem = this.calculatePrice(item);
+          return {
+            ...item,
+            ...calculatedItem,
+            expires: this.calculateExpiration(item),
+          };
+        });
       })
       .catch((error) => {
         console.log(error);
       });
   },
+
   methods: {
     calculatePrice(product) {
-      const daysPassed = moment().diff(moment(product.created_at), 'days');
+      const daysPassed = moment()
+        .startOf('day')
+        .diff(moment(product.createdAt).startOf('day'), 'days');
+      let finalPrice = 0;
+      let available = true;
+      let discountRate = 0;
+
       if (daysPassed === 0) {
-        return product.price;
+        finalPrice = 0;
+        discountRate = 0;
       } else if (daysPassed === 1) {
-        return product.price * 0.8;
+        finalPrice = product.price * 0.2;
+        discountRate = 20;
       } else if (daysPassed === 2) {
-        return product.price * 0.2;
+        finalPrice = product.price * 0.8;
+        discountRate = 80;
+      } else if (daysPassed === 3) {
+        finalPrice = product.price * 0.9;
+        discountRate = 90;
+      } else if (daysPassed > 3) {
+        finalPrice = product.price * 0.95;
+        discountRate = 95;
       } else {
-        return 0;
+        finalPrice = product.price;
+        available = false;
       }
+
+      let discounted = product.price - finalPrice;
+
+      return {
+        originalPrice: product.price,
+        finalPrice: finalPrice,
+        discounted: discounted,
+        available,
+        discountRate,
+      };
     },
+
     calculateExpiration(product) {
       const expirationDate = moment(product.created_at).add(3, 'days');
       return expirationDate.format('YYYY-MM-DD');
@@ -166,10 +217,6 @@ export default {
 .expires {
   font-weight: bold !important;
   color: red !important;
-}
-
-.discount-price {
-  color: green !important;
 }
 
 .subtitles {
@@ -215,10 +262,6 @@ h2 {
 .expires {
   font-weight: bold !important;
   color: red !important;
-}
-
-.discount-price {
-  color: green !important;
 }
 
 .subtitles {
