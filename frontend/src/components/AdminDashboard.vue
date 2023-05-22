@@ -3,18 +3,27 @@
   <v-app>
     <v-main>
       <v-container>
+        <v-card class="mx-auto" outlined>
+          <v-list-item three-line>
+            <v-list-item-content>
+              <div class="overline mb-4">OVERVIEW</div>
+              <v-list-item-title class="headline mb-1">
+                Current Products
+              </v-list-item-title>
+              <v-list-item-subtitle>
+                {{ displayProducts.length }} products available
+              </v-list-item-subtitle>
+              <!-- avatar -->
+            </v-list-item-content>
+            <v-avatar tile size="80" color="grey">
+              <v-icon size="56">mdi-cake</v-icon>
+            </v-avatar>
+          </v-list-item>
+          <v-card-actions>
+            <v-btn color="primary" @click="dialog = true">New Product</v-btn>
+          </v-card-actions>
+        </v-card>
         <v-dialog v-model="dialog" max-width="500px">
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn
-              color="primary"
-              dark
-              class="mt-3 mb-3"
-              v-bind="attrs"
-              v-on="on"
-            >
-              New Item
-            </v-btn>
-          </template>
           <v-card class="pa-3 elevation-12 dialog-v-card">
             <v-card-title>
               <span class="headline">{{
