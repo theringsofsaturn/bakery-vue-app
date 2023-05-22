@@ -42,12 +42,12 @@ To run Luana & Maria's Bakery locally, follow these steps:
 
 1. Clone the repository:
    ```
-   git clone https://github.com/your-username/luana-maria-bakery.git
+   git clone https://github.com/theringsofsaturn/interlogica-test.git
    ```
 
 2. Navigate to the project directory:
    ```
-   cd luana-maria-bakery
+   cd interlogica-test
    ```
 
 3. Install the dependencies:
@@ -57,17 +57,19 @@ To run Luana & Maria's Bakery locally, follow these steps:
 
 4. Set up the backend:
 
-- Set up a MongoDB database and update the `config/db.js` file with the connection details.
 - Run the backend server:
   ```
-  npm run server
+  cd backend
+  npm i
+  npm run start
   ```
 
 5. Set up the frontend:
 
-- Update the API base URL in `src/config.js` to match your backend server URL.
 - Run the frontend server:
   ```
+  cd frontend
+  npm i
   npm run serve
   ```
 
@@ -79,6 +81,7 @@ To run Luana & Maria's Bakery locally, follow these steps:
 - Create an account or log in using existing credentials.
 - Browse the available products, view details, and add items to your cart.
 - Proceed to the checkout page to finalize your order.
+- Use the "Dashboard" to create/edit/delete products
 
 ## Contributing
 
