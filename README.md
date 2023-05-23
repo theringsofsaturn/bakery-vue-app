@@ -50,12 +50,7 @@ To run Luana & Maria's Bakery locally, follow these steps:
    cd interlogica-test
    ```
 
-3. Install the dependencies:
-   ```
-   npm install
-   ```
-
-4. Set up the backend:
+3. Set up the backend:
 
 - Run the backend server:
   ```
@@ -64,7 +59,7 @@ To run Luana & Maria's Bakery locally, follow these steps:
   npm run start
   ```
 
-5. Set up the frontend:
+4. Set up the frontend:
 
 - Run the frontend server:
   ```
@@ -73,7 +68,7 @@ To run Luana & Maria's Bakery locally, follow these steps:
   npm run serve
   ```
 
-6. Access the application in your browser at `http://localhost:8080`.
+5. Access the application in your browser at `http://localhost:8080`.
 
 ## Usage
 
