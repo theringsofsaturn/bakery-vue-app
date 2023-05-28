@@ -42,12 +42,12 @@ To run Luana & Maria's Bakery locally, follow these steps:
 
 1. Clone the repository:
    ```
-   git clone https://github.com/theringsofsaturn/interlogica-test.git
+   git clone https://github.com/theringsofsaturn/bakery-app.git
    ```
 
 2. Navigate to the project directory:
    ```
-   cd interlogica-test
+   cd bakery-app
    ```
 
 3. Set up the backend:
